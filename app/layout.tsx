@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo_Black, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Archivo_Black, Bebas_Neue, IBM_Plex_Mono, Monoton, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -9,6 +9,18 @@ const spaceGrotesk = Space_Grotesk({
 
 const archivoBlack = Archivo_Black({
   variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const monoton = Monoton({
+  variable: "--font-monoton",
   subsets: ["latin"],
   weight: "400",
 });
@@ -36,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${spaceGrotesk.variable} ${archivoBlack.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${archivoBlack.variable} ${plexMono.variable} ${bebasNeue.variable} ${monoton.variable} h-full antialiased`}
     >
       <body className="site-body min-h-full">{children}</body>
     </html>

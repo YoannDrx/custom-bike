@@ -9,6 +9,7 @@ import { business, navigation } from "@/lib/site-content";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const isViceHome = pathname === "/";
   const { scrollY } = useScroll();
   const lastYRef = useRef(0);
   const [hidden, setHidden] = useState(false);
@@ -50,20 +51,28 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className="site-header-shell"
+      className={`site-header-shell ${isViceHome ? "site-header-shell-vice" : ""}`}
       initial={false}
-      animate={{ y: hidden ? -150 : 0 }}
+      animate={{ y: hidden ? "-132%" : "0%" }}
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="site-header-frame">
-        <div className={`site-header-surface ${compact ? "site-header-surface-compact" : ""}`}>
+      <div className={`site-header-frame ${isViceHome ? "site-header-frame-vice" : ""}`}>
+        <div
+          className={`site-header-surface ${compact ? "site-header-surface-compact" : ""} ${
+            isViceHome ? "site-header-surface-vice" : ""
+          }`}
+        >
           <Link
             href="/"
             className="site-brand"
             aria-label="Retour a l'accueil Custom Bike"
             onClick={() => setMobileOpen(false)}
           >
-            <div className={`site-brand-logo ${compact ? "site-brand-logo-compact" : ""}`}>
+            <div
+              className={`site-brand-logo ${compact ? "site-brand-logo-compact" : ""} ${
+                isViceHome ? "site-brand-logo-vice" : ""
+              }`}
+            >
               <Image
                 src="/media/custombike-logo.jpg"
                 alt="Logo Custom Bike"
@@ -73,23 +82,31 @@ export function SiteHeader() {
               />
             </div>
 
-            <div className="site-brand-copy">
-              <span className="site-brand-topline">
-                Montreuil
+            <div className={`site-brand-copy ${isViceHome ? "site-brand-copy-vice" : ""}`}>
+              <span className={`site-brand-topline ${isViceHome ? "site-brand-topline-vice" : ""}`}>
+                {isViceHome ? "Los Santos / Montreuil" : "Montreuil"}
                 <span aria-hidden="true">/</span>
-                Atelier
+                {isViceHome ? "Night Garage" : "Atelier"}
               </span>
-              <p className="display-font site-brand-title">Custom Bike</p>
-              <p className="site-brand-subtitle">Moto, scooter, custom, LED, assurance</p>
+              <p className={`display-font site-brand-title ${isViceHome ? "site-brand-title-vice" : ""}`}>
+                Custom Bike
+              </p>
+              <p className={`site-brand-subtitle ${isViceHome ? "site-brand-subtitle-vice" : ""}`}>
+                {isViceHome
+                  ? "Repairs, neon customs, insurance, vice city mood"
+                  : "Moto, scooter, custom, LED, assurance"}
+              </p>
             </div>
           </Link>
 
-          <nav className="site-nav" aria-label="Navigation principale">
+          <nav className={`site-nav ${isViceHome ? "site-nav-vice" : ""}`} aria-label="Navigation principale">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`site-nav-link ${isActive(item.href) ? "site-nav-link-active" : ""}`}
+                className={`site-nav-link ${isActive(item.href) ? "site-nav-link-active" : ""} ${
+                  isViceHome ? "site-nav-link-vice" : ""
+                }`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -98,7 +115,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="site-header-actions">
-            <a href={business.phoneHref} className="site-phone-chip">
+            <a href={business.phoneHref} className={`site-phone-chip ${isViceHome ? "site-phone-chip-vice" : ""}`}>
               {business.phoneDisplay}
             </a>
 
@@ -106,7 +123,9 @@ export function SiteHeader() {
               type="button"
               aria-expanded={mobileOpen}
               aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              className={`mobile-toggle ${mobileOpen ? "mobile-toggle-open" : ""}`}
+              className={`mobile-toggle ${mobileOpen ? "mobile-toggle-open" : ""} ${
+                isViceHome ? "mobile-toggle-vice" : ""
+              }`}
               onClick={() => setMobileOpen((open) => !open)}
             >
               <span />
@@ -118,7 +137,7 @@ export function SiteHeader() {
         <AnimatePresence initial={false}>
           {mobileOpen ? (
             <motion.div
-              className="site-mobile-sheet"
+              className={`site-mobile-sheet ${isViceHome ? "site-mobile-sheet-vice" : ""}`}
               initial={{ opacity: 0, y: -18 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -18 }}
@@ -129,7 +148,9 @@ export function SiteHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`site-mobile-link ${isActive(item.href) ? "site-mobile-link-active" : ""}`}
+                    className={`site-mobile-link ${isActive(item.href) ? "site-mobile-link-active" : ""} ${
+                      isViceHome ? "site-mobile-link-vice" : ""
+                    }`}
                     onClick={() => setMobileOpen(false)}
                   >
                     <span>{item.label}</span>
