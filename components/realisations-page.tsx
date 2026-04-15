@@ -1,23 +1,23 @@
 import Image from "next/image";
-import { ButtonLink, Reveal, SectionLabel } from "@/components/site-primitives";
+import { ButtonLink, HoverTile, Reveal, SectionLabel } from "@/components/site-primitives";
 import { business, featuredProjects, galleryItems, testimonials } from "@/lib/site-content";
 
 const socialVideos = [
   {
     title: "BMW M Sport",
-    caption: "Programmation / instrumentation",
+    caption: "Instrumentation / reel",
     image: "/media/tiktok-msport.jpg",
     url: "https://www.tiktok.com/@custombike/video/7419298293030587680",
   },
   {
     title: "RT full black",
-    caption: "Finition visuelle",
+    caption: "Finition / TikTok",
     image: "/media/tiktok-rt-black.jpg",
     url: "https://www.tiktok.com/@custombike/video/7501297224568147222",
   },
   {
     title: "Yamaha LED",
-    caption: "Signature lumineuse",
+    caption: "Signature / TikTok",
     image: "/media/tiktok-yamaha-led.jpg",
     url: "https://www.tiktok.com/@custombike/video/7575206149968989462",
   },
@@ -26,254 +26,273 @@ const socialVideos = [
 export function RealisationsPage() {
   return (
     <>
-      <section className="section-shell section-paper py-18 lg:py-24">
-        <div className="mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr]">
-            <div>
+      <section className="section-shell px-4 pb-18 pt-4 md:px-6 lg:pb-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="pt-4">
               <Reveal>
-                <SectionLabel>Réalisations</SectionLabel>
+                <SectionLabel tone="accent">Realisations</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
-                <h1 className="display-font mt-6 text-[3.6rem] leading-[0.9] text-[#111111] md:text-[5rem] xl:text-[5.8rem]">
-                  Ce que l’atelier
-                  <span className="block text-black/44">fait vraiment sortir.</span>
+                <h1 className="display-font mt-6 text-[3.2rem] leading-[0.84] text-[var(--ink)] md:text-[5.2rem]">
+                  Les images doivent
+                  <span className="block text-[var(--red)]">porter le niveau</span>
+                  <span className="block">de finition.</span>
                 </h1>
               </Reveal>
-              <Reveal delay={0.16}>
-                <p className="mt-6 max-w-xl text-base leading-8 text-black/64">
-                  LED, logos, carénages, accessoires, finitions, électroniques, avant / après,
-                  remise en état ou présence visuelle. Cette page existe pour faire sentir la
-                  densité du travail, pas juste pour aligner des miniatures.
+              <Reveal delay={0.14}>
+                <p className="mt-5 max-w-xl text-base leading-8 text-[var(--ink-soft)]">
+                  Cette page devient plus editoriale: beaucoup moins galerie standard, beaucoup plus
+                  rythme, collisions visuelles et respirations marquees.
                 </p>
               </Reveal>
-              <Reveal delay={0.22}>
-                <div className="mt-8 flex flex-wrap gap-3">
+              <Reveal delay={0.18}>
+                <div className="mt-7 flex flex-wrap gap-3">
                   <ButtonLink href={business.socials.instagram} label="Voir Instagram" external />
-                  <ButtonLink href={business.socials.tiktok} label="Voir TikTok" variant="ghost" external />
+                  <ButtonLink
+                    href={business.socials.tiktok}
+                    label="Voir TikTok"
+                    variant="secondary"
+                    external
+                  />
                 </div>
               </Reveal>
             </div>
 
-            <Reveal delay={0.12}>
-              <div className="gallery-marquee-shell">
-                <div className="gallery-marquee-track gallery-marquee-track-a">
-                  {[...galleryItems.slice(0, 5), ...galleryItems.slice(0, 5)].map((item, index) => (
-                    <div key={`${item.title}-${index}`} className="gallery-marquee-card">
-                      <div className="image-panel aspect-[4/5] bg-black">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="22vw"
-                          className="object-cover"
-                        />
-                        <div className="masonry-overlay" />
-                        <div className="masonry-copy">
-                          <p className="project-kicker">{item.category}</p>
-                          <p className="display-font text-[1.8rem] leading-none text-white">
-                            {item.title}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+            <div className="grid gap-4 md:grid-cols-2">
+              <Reveal delay={0.08} direction="right">
+                <div className="neo-image-frame min-h-[23rem] md:min-h-[30rem]">
+                  <Image
+                    src="/media/tiktok-rt-black.jpg"
+                    alt="BMW RT full black"
+                    fill
+                    sizes="(min-width: 1024px) 34vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="hero-shot-overlay" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                    <p className="neo-kicker text-white/58">Custom / presence</p>
+                    <p className="display-font mt-3 text-[2.4rem] leading-[0.88] text-white md:text-[3.5rem]">
+                      RT full black
+                    </p>
+                  </div>
                 </div>
-                <div className="gallery-marquee-track gallery-marquee-track-b">
-                  {[...galleryItems.slice(3), ...galleryItems.slice(3)].map((item, index) => (
-                    <div key={`${item.caption}-${index}`} className="gallery-marquee-card gallery-marquee-card-small">
-                      <div className="image-panel aspect-[5/6] bg-black">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="18vw"
-                          className="object-cover"
-                        />
-                        <div className="masonry-overlay" />
-                        <div className="masonry-copy">
-                          <p className="project-kicker">{item.caption}</p>
-                          <p className="display-font text-[1.4rem] leading-none text-white">
-                            {item.title}
-                          </p>
-                        </div>
-                      </div>
+              </Reveal>
+
+              <div className="grid gap-4">
+                <Reveal delay={0.12}>
+                  <HoverTile tilt={-0.8}>
+                    <div className="neo-panel neo-panel-red floating-sticker p-5">
+                      <p className="neo-kicker text-white/60">Image forte</p>
+                      <p className="display-font mt-3 text-[2rem] leading-[0.92]">
+                        Avant / apres,
+                        <span className="block">LED, details.</span>
+                      </p>
                     </div>
-                  ))}
-                </div>
+                  </HoverTile>
+                </Reveal>
+
+                <Reveal delay={0.16}>
+                  <div className="neo-image-frame min-h-[14rem]">
+                    <Image
+                      src="/media/goldwing-led.jpg"
+                      alt="Goldwing avec logos LED"
+                      fill
+                      sizes="(min-width: 1024px) 18vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section-shell section-carbon py-22 text-white lg:py-28">
-        <div className="mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+      <div className="section-divider" />
+
+      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
               <Reveal>
-                <SectionLabel tone="light">Projets phares</SectionLabel>
+                <SectionLabel>Selection marquee</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
-                <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-white md:text-[4.4rem]">
-                  Les machines qui racontent
-                  <span className="block text-white/56">l’univers Custom Bike.</span>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
+                  Gros plans,
+                  <span className="block text-[var(--red)]">pas miniatures timides.</span>
                 </h2>
               </Reveal>
             </div>
 
             <Reveal delay={0.12}>
-              <p className="max-w-2xl text-sm leading-8 text-white/64">
-                La sélection mélange travaux esthétiques, éclairage, électronique et projets plus
-                complets. L’idée n’est pas de copier un feed social, mais d’en faire une galerie
-                vraiment éditorialisée.
+              <p className="max-w-2xl text-sm leading-8 text-[var(--ink-soft)] md:text-base">
+                Chaque tuile existe comme une piece forte. L&apos;objectif n&apos;est pas de remplir
+                une grille, mais de faire ressentir la densite et la proprete d&apos;execution.
               </p>
             </Reveal>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {featuredProjects.map((project, index) => (
               <Reveal key={project.title} delay={0.04 * index}>
-                <a href={project.url} target="_blank" rel="noreferrer" className="project-tile">
-                  <div className="image-panel aspect-[4/5] bg-black">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 100vw"
-                      className="object-cover"
-                    />
-                    <div className="masonry-overlay" />
-                    <div className="masonry-copy">
-                      <p className="project-kicker">{project.category}</p>
-                      <p className="display-font text-[2rem] leading-none text-white">
+                <HoverTile tilt={index % 2 === 0 ? -1 : 1}>
+                  <a href={project.url} target="_blank" rel="noreferrer" className="block">
+                    <article className={`neo-panel h-full p-4 md:p-5 ${index % 2 === 1 ? "neo-panel-soft" : ""}`}>
+                      <div className="neo-image-frame aspect-[4/5]">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="neo-kicker mt-4 text-[var(--ink-faint)]">{project.category}</p>
+                      <h3 className="display-font mt-3 text-[1.85rem] leading-[0.9] text-[var(--ink)]">
                         {project.title}
-                      </p>
-                      <p className="mt-3 max-w-xs text-sm leading-7 text-white/68">
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
                         {project.subtitle}
                       </p>
-                    </div>
-                  </div>
-                </a>
+                    </article>
+                  </a>
+                </HoverTile>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-shell section-white py-22 lg:py-28">
-        <div className="mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="section-shell bg-[var(--ink)] px-4 py-18 text-white md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
               <Reveal>
-                <SectionLabel>Mur de réalisations</SectionLabel>
+                <SectionLabel tone="light">Mosaic libre</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
-                <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-[#111111] md:text-[4.4rem]">
-                  Une galerie dense,
-                  <span className="block text-black/44">pensée comme un portfolio vivant.</span>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-white md:text-[4.6rem]">
+                  Une galerie
+                  <span className="block text-white/58">qui respire et cogne.</span>
                 </h2>
               </Reveal>
             </div>
 
             <Reveal delay={0.12}>
-              <p className="max-w-2xl text-sm leading-8 text-black/62">
-                Hover plus riches, zooms, profondeur, images mixtes Instagram et TikTok, et une
-                composition plus libre que la grille standard qu’on voit partout.
+              <p className="max-w-2xl text-sm leading-8 text-white/72 md:text-base">
+                On garde l&apos;energie sociale, mais avec des surfaces plus fortes, des bords
+                epais, des fonds plus assumes et des ctas plus directs.
               </p>
             </Reveal>
           </div>
 
-          <div className="masonry-grid mt-12">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {galleryItems.map((item, index) => (
               <Reveal key={item.title} delay={0.03 * index}>
-                <a href={item.url} target="_blank" rel="noreferrer" className="masonry-item-link">
-                  <div className={`image-panel ${item.aspect} bg-black`}>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 100vw"
-                      className="object-cover"
-                    />
-                    <div className="masonry-overlay" />
-                    <div className="masonry-copy">
-                      <p className="project-kicker">{item.caption}</p>
-                      <p className="display-font text-[1.9rem] leading-none text-white">
+                <HoverTile tilt={index % 3 === 0 ? -0.8 : index % 3 === 1 ? 0.8 : -0.4}>
+                  <a href={item.url} target="_blank" rel="noreferrer" className="block">
+                    <article className="neo-panel neo-panel-dark h-full p-4 md:p-5">
+                      <div className={`neo-image-frame ${item.aspect}`}>
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="neo-kicker mt-4 text-white/52">{item.caption}</p>
+                      <h3 className="display-font mt-3 text-[1.8rem] leading-[0.9] text-white">
                         {item.title}
-                      </p>
-                    </div>
-                  </div>
-                </a>
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-white/72">{item.category}</p>
+                    </article>
+                  </a>
+                </HoverTile>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-shell section-metal py-22 text-white lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel tone="light">TikTok & détails en mouvement</SectionLabel>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-white md:text-[4.4rem]">
-                Quand l’image bouge,
-                <span className="block text-white/56">la finition se lit encore mieux.</span>
-              </h2>
+      <div className="section-divider" />
+
+      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+            <div>
+              <Reveal>
+                <SectionLabel>TikTok & reels</SectionLabel>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
+                  Quand l&apos;image bouge,
+                  <span className="block text-[var(--red)]">la finition se voit mieux.</span>
+                </h2>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.12}>
+              <p className="max-w-2xl text-sm leading-8 text-[var(--ink-soft)] md:text-base">
+                Les formats verticaux deviennent des cartes editorialisees, pas un simple lien
+                vers un reseau externe.
+              </p>
             </Reveal>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
             {socialVideos.map((item, index) => (
               <Reveal key={item.title} delay={0.04 * index}>
-                <a href={item.url} target="_blank" rel="noreferrer" className="editorial-card editorial-card-dark block">
-                  <div className="image-panel aspect-[4/5] bg-black">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(min-width: 1280px) 22vw, (min-width: 768px) 32vw, 100vw"
-                      className="object-cover"
-                    />
-                    <div className="masonry-overlay" />
-                  </div>
-                  <p className="editorial-kicker mt-5">{item.caption}</p>
-                  <p className="display-font mt-3 text-[2rem] leading-none text-white">{item.title}</p>
-                </a>
+                <HoverTile tilt={index % 2 === 0 ? -0.8 : 0.8}>
+                  <a href={item.url} target="_blank" rel="noreferrer" className="block">
+                    <article className={`neo-panel h-full p-4 md:p-5 ${index === 1 ? "neo-panel-soft" : "neo-panel-metal"}`}>
+                      <div className="neo-image-frame aspect-[4/5]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(min-width: 768px) 30vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="neo-kicker mt-4 text-[var(--ink-faint)]">{item.caption}</p>
+                      <h3 className="display-font mt-3 text-[1.8rem] leading-[0.9] text-[var(--ink)]">
+                        {item.title}
+                      </h3>
+                    </article>
+                  </a>
+                </HoverTile>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-shell section-oxide py-22 text-white lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel tone="light">Retour client</SectionLabel>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-white md:text-[4.4rem]">
-                L’effet recherché:
-                <span className="block text-white/56">faire sortir la machine sans la caricaturer.</span>
-              </h2>
-            </Reveal>
-          </div>
+      <section className="section-shell bg-[var(--red)] px-4 py-18 text-white md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <div className="neo-panel neo-panel-dark p-6 md:p-8">
+              <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
+                <div>
+                  <SectionLabel tone="light">Retour client</SectionLabel>
+                  <p className="mt-6 text-base leading-8 text-white/80 md:text-lg">
+                    &ldquo;{testimonials[2].quote}&rdquo;
+                  </p>
+                  <p className="display-font mt-5 text-[1.8rem] leading-none text-white">
+                    {testimonials[2].author}
+                  </p>
+                  <p className="mt-2 text-[0.72rem] uppercase tracking-[0.24em] text-white/50">
+                    {testimonials[2].meta}
+                  </p>
+                </div>
 
-          <Reveal delay={0.12}>
-            <div className="testimonial-stage">
-              <p className="text-2xl leading-10 text-white md:text-[2rem] md:leading-[1.7]">
-                &ldquo;{testimonials[2].quote}&rdquo;
-              </p>
-              <footer className="mt-8 border-t border-white/10 pt-5">
-                <p className="display-font text-[2rem] leading-none text-white">
-                  {testimonials[2].author}
-                </p>
-                <p className="mt-2 text-[0.72rem] uppercase tracking-[0.3em] text-white/50">
-                  {testimonials[2].meta}
-                </p>
-              </footer>
+                <div className="flex flex-wrap gap-3 lg:justify-end">
+                  <ButtonLink href="/contact" label="Parler du projet" variant="secondary" />
+                  <ButtonLink href={business.socials.instagram} label="Instagram" variant="ghost" external />
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>

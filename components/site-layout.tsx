@@ -7,7 +7,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="site-root">
       <SiteHeader />
-      <div className="site-main">{children}</div>
+      <main className="site-main">{children}</main>
       <FullWidthMap />
       <SiteFooter />
     </div>

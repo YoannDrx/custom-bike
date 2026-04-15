@@ -25,8 +25,8 @@ export function FaqAccordion({
         return (
           <motion.div
             key={item.question}
-            className={`faq-item ${tone === "light" ? "faq-item-light" : "faq-item-dark"}`}
-            whileHover={{ x: 4 }}
+            className={`faq-item ${tone === "light" ? "faq-item-light" : ""}`}
+            whileHover={{ x: tone === "light" ? 0 : 4 }}
           >
             <button
               type="button"

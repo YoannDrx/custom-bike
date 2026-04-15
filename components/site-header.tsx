@@ -11,7 +11,6 @@ export function SiteHeader() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const lastYRef = useRef(0);
-
   const [hidden, setHidden] = useState(false);
   const [compact, setCompact] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -19,20 +18,20 @@ export function SiteHeader() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const delta = latest - lastYRef.current;
 
-    if (latest <= 16) {
+    if (latest <= 24) {
       setCompact(false);
       setHidden(false);
       lastYRef.current = latest;
       return;
     }
 
-    setCompact(latest > 34);
+    setCompact(latest > 44);
 
-    if (Math.abs(delta) < 4) {
+    if (Math.abs(delta) < 5) {
       return;
     }
 
-    if (delta > 0 && latest > 140) {
+    if (delta > 0 && latest > 170 && !mobileOpen) {
       setHidden(true);
     } else if (delta < 0) {
       setHidden(false);
@@ -53,119 +52,109 @@ export function SiteHeader() {
     <motion.header
       className="site-header-shell"
       initial={false}
-      animate={{ y: hidden ? -140 : 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      animate={{ y: hidden ? -150 : 0 }}
+      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="site-header-frame">
-        <motion.div
-          className={`site-header-surface ${compact ? "site-header-surface-compact" : ""}`}
-          initial={false}
-          animate={{
-            paddingTop: compact ? 12 : 0,
-          }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className={`site-header-inner ${compact ? "site-header-inner-compact" : ""}`}
-            initial={false}
-            animate={{
-              borderRadius: compact ? 999 : 30,
-              boxShadow: compact ? "0 18px 45px rgba(17,17,17,0.12)" : "0 10px 24px rgba(17,17,17,0.04)",
-            }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        <div className={`site-header-surface ${compact ? "site-header-surface-compact" : ""}`}>
+          <Link
+            href="/"
+            className="site-brand"
+            aria-label="Retour a l'accueil Custom Bike"
+            onClick={() => setMobileOpen(false)}
           >
-            <Link href="/" className="site-brand" onClick={() => setMobileOpen(false)}>
-              <div className={`site-brand-mark ${compact ? "site-brand-mark-compact" : ""}`}>
-                <Image
-                  src="/media/custombike-logo.jpg"
-                  alt="Logo Custom Bike"
-                  width={84}
-                  height={84}
-                  className="site-brand-mark-image"
-                />
-              </div>
-
-              <div className={`site-brand-copy ${compact ? "site-brand-copy-compact" : ""}`}>
-                <p className="display-font site-brand-title">Custom Bike</p>
-                <p className="site-brand-subtitle">Garage moto / scooter - Montreuil</p>
-              </div>
-            </Link>
-
-            <nav className="site-desktop-nav">
-              {navigation.map((item, index) => {
-                const active = isActive(item.href);
-
-                return (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, y: -12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.04 * index, duration: 0.45 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`nav-link ${active ? "nav-link-active" : ""}`}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </nav>
-
-            <div className="site-header-actions">
-              <a href={business.phoneHref} className="site-phone-pill">
-                {business.phoneDisplay}
-              </a>
-
-              <button
-                type="button"
-                aria-label="Ouvrir le menu"
-                className="mobile-toggle"
-                onClick={() => setMobileOpen((open) => !open)}
-              >
-                <span />
-                <span />
-              </button>
+            <div className={`site-brand-logo ${compact ? "site-brand-logo-compact" : ""}`}>
+              <Image
+                src="/media/custombike-logo.jpg"
+                alt="Logo Custom Bike"
+                width={96}
+                height={96}
+                className="h-full w-full object-cover"
+              />
             </div>
-          </motion.div>
-        </motion.div>
-      </div>
 
-      <AnimatePresence>
-        {mobileOpen ? (
-          <motion.div
-            initial={{ opacity: 0, y: -18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -18 }}
-            transition={{ duration: 0.28 }}
-            className="site-mobile-menu"
-          >
-            <div className="site-mobile-menu-inner">
-              {navigation.map((item) => {
-                const active = isActive(item.href);
+            <div className="site-brand-copy">
+              <span className="site-brand-topline">
+                Montreuil
+                <span aria-hidden="true">/</span>
+                Atelier
+              </span>
+              <p className="display-font site-brand-title">Custom Bike</p>
+              <p className="site-brand-subtitle">Moto, scooter, custom, LED, assurance</p>
+            </div>
+          </Link>
 
-                return (
+          <nav className="site-nav" aria-label="Navigation principale">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`site-nav-link ${isActive(item.href) ? "site-nav-link-active" : ""}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="site-header-actions">
+            <a href={business.phoneHref} className="site-phone-chip">
+              {business.phoneDisplay}
+            </a>
+
+            <button
+              type="button"
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              className={`mobile-toggle ${mobileOpen ? "mobile-toggle-open" : ""}`}
+              onClick={() => setMobileOpen((open) => !open)}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence initial={false}>
+          {mobileOpen ? (
+            <motion.div
+              className="site-mobile-sheet"
+              initial={{ opacity: 0, y: -18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="site-mobile-sheet-inner">
+                {navigation.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`mobile-nav-link ${active ? "mobile-nav-link-active" : ""}`}
+                    className={`site-mobile-link ${isActive(item.href) ? "site-mobile-link-active" : ""}`}
                     onClick={() => setMobileOpen(false)}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <span className="display-font text-xl">+</span>
                   </Link>
-                );
-              })}
+                ))}
 
-              <div className="site-mobile-contact">
-                <a href={business.phoneHref}>{business.phoneDisplay}</a>
-                <a href={business.emailHref}>{business.email}</a>
+                <div className="site-mobile-meta">
+                  <a href={business.phoneHref} className="neo-button neo-button-primary">
+                    <span>Appeler</span>
+                    <span className="neo-button-mark" />
+                  </a>
+                  <a href={business.emailHref} className="neo-button neo-button-secondary">
+                    <span>E-mail</span>
+                    <span className="neo-button-mark" />
+                  </a>
+                  <a href={business.mapHref} target="_blank" rel="noreferrer" className="neo-chip">
+                    {business.address}
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </motion.header>
   );
 }

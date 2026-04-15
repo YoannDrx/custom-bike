@@ -1,22 +1,31 @@
 import type { Metadata } from "next";
-import { Sora, Teko } from "next/font/google";
+import { Archivo_Black, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-const teko = Teko({
-  variable: "--font-teko",
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "Custom Bike | Garage moto & scooter premium a Montreuil",
+  title: {
+    default: "Custom Bike | Atelier neo-brutaliste moto & scooter a Montreuil",
+    template: "%s | Custom Bike",
+  },
   description:
-    "Custom Bike, atelier moto et scooter a Montreuil. Revisions, reparations, accessoires, covering, LED, dossiers assurance et projets custom multi-marques.",
+    "Custom Bike repense l'atelier moto et scooter a Montreuil avec une experience visuelle forte: revisions, reparations, LED, accessoires, assurances, vente et location.",
 };
 
 export default function RootLayout({
@@ -27,9 +36,9 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${sora.variable} ${teko.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${archivoBlack.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="site-body min-h-full">{children}</body>
     </html>
   );
 }

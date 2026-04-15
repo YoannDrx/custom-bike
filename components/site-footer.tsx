@@ -5,33 +5,41 @@ import { business, navigation } from "@/lib/site-content";
 export function SiteFooter() {
   return (
     <footer className="footer-shell">
-      <div className="mx-auto w-full max-w-7xl px-5 py-14 md:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.72fr_0.72fr_0.92fr]">
-          <div>
-            <div className="flex items-center gap-5">
-              <div className="footer-logo-wrap">
+      <div className="footer-inner">
+        <div className="grid gap-8 lg:grid-cols-4">
+          <div className="neo-panel neo-panel-red p-6 md:p-7">
+            <div className="flex items-center gap-4">
+              <div className="site-brand-logo !h-[4.5rem] !w-[4.5rem] !rounded-[1.4rem] !border-white !shadow-none">
                 <Image
                   src="/media/custombike-logo.jpg"
                   alt="Logo Custom Bike"
-                  width={90}
-                  height={90}
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover"
                 />
               </div>
 
               <div>
-                <p className="display-font text-[3rem] leading-none text-[#111111]">
-                  Custom Bike
-                </p>
-                <p className="mt-2 text-[0.72rem] uppercase tracking-[0.34em] text-black/46">
-                  Garage moto / scooter premium
-                </p>
+                <p className="neo-kicker text-white/70">Montreuil / atelier / custom</p>
+                <p className="display-font mt-2 text-[2.7rem] leading-none">Custom Bike</p>
               </div>
             </div>
 
-            <p className="mt-6 max-w-md text-sm leading-8 text-black/62">
-              Révision, réparation, accessoires, sellerie, LED, vente, location et prise en
-              charge assurance pour motos et scooters à Montreuil.
+            <p className="mt-5 max-w-xl text-sm leading-8 text-white/78 md:text-base">
+              Revisions, reparations, sellerie, accessoires, LED, dossiers assurance, vente et
+              location. Le site devient aussi assumé que les machines qui sortent de l&apos;atelier.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={business.phoneHref} className="neo-button neo-button-secondary">
+                <span>{business.phoneDisplay}</span>
+                <span className="neo-button-mark" />
+              </a>
+              <a href={business.emailHref} className="neo-button neo-button-dark">
+                <span>Ecrire</span>
+                <span className="neo-button-mark" />
+              </a>
+            </div>
           </div>
 
           <div>
@@ -46,7 +54,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="footer-heading">Coordonnées</p>
+            <p className="footer-heading">Coordonnees</p>
             <div className="footer-list">
               <a href={business.phoneHref}>{business.phoneDisplay}</a>
               <a href={business.emailHref}>{business.email}</a>
@@ -57,7 +65,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="footer-heading">Horaires & réseaux</p>
+            <p className="footer-heading">Horaires & reseaux</p>
             <div className="footer-list">
               {business.hours.map((line) => (
                 <p key={line}>{line}</p>
@@ -73,8 +81,8 @@ export function SiteFooter() {
         </div>
 
         <div className="footer-bottom">
-          <p>Custom Bike - Montreuil</p>
-          <p>Révision / Réparation / Accessoires / LED / Vente / Location</p>
+          <p>Custom Bike / Montreuil / Atelier moto & scooter</p>
+          <p>Neo-brutaliste dehors, precision dedans</p>
         </div>
       </div>
     </footer>

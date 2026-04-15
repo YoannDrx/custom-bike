@@ -1,186 +1,233 @@
 import Image from "next/image";
-import { ButtonLink, Reveal, SectionLabel, Stars } from "@/components/site-primitives";
+import { ButtonLink, HoverTile, Reveal, SectionLabel } from "@/components/site-primitives";
 import { brandPartners, business, testimonials, trustGuests } from "@/lib/site-content";
+
+const workshopValues = [
+  {
+    title: "Lecture claire",
+    text: "Le client doit comprendre le besoin, le geste atelier et le resultat vise sans friction.",
+  },
+  {
+    title: "Finition propre",
+    text: "Un montage utile perd tout son interet s'il vieillit mal ou s'il se lit comme du bricolage.",
+  },
+  {
+    title: "Double culture",
+    text: "La mecanique serieuse et l'esthetique ne sont pas traitees comme deux mondes separes.",
+  },
+  {
+    title: "Ancrage local",
+    text: "Montreuil, accueil reel, suivi simple, passage en atelier et adresse tres visible.",
+  },
+];
 
 export function AboutPage() {
   return (
     <>
-      <section className="section-shell section-paper py-22 lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.86fr_1.14fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel>À propos</SectionLabel>
+      <section className="section-shell px-4 pb-18 pt-4 md:px-6 lg:pb-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="pt-4">
+              <Reveal>
+                <SectionLabel tone="accent">A propos</SectionLabel>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h1 className="display-font mt-6 text-[3.2rem] leading-[0.84] text-[var(--ink)] md:text-[5.2rem]">
+                  Un atelier
+                  <span className="block text-[var(--red)]">qui remet en route</span>
+                  <span className="block">et remet en valeur.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={0.14}>
+                <p className="mt-5 max-w-xl text-base leading-8 text-[var(--ink-soft)]">
+                  La refonte change le ton du site pour coller a l&apos;identite reelle de Custom
+                  Bike: precis, visuel, urbain, premium et assume sans surjouer.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  { label: "Multi-marques", value: "BMW, Honda, Yamaha..." },
+                  { label: "Cadence", value: "10h / 18h" },
+                  { label: "Offre", value: "Atelier + custom + mobilite" },
+                  { label: "Adresse", value: "Montreuil" },
+                ].map((item, index) => (
+                  <Reveal
+                    key={item.label}
+                    delay={0.2 + index * 0.04}
+                    direction={index % 2 === 0 ? "left" : "right"}
+                  >
+                    <HoverTile tilt={index % 2 === 0 ? -0.8 : 0.8}>
+                      <div className="neo-panel p-5">
+                        <p className="neo-kicker text-[var(--ink-faint)]">{item.label}</p>
+                        <p className="display-font mt-3 text-[1.9rem] leading-none text-[var(--ink)]">
+                          {item.value}
+                        </p>
+                      </div>
+                    </HoverTile>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <Reveal delay={0.12} direction="right">
+              <div className="neo-image-frame min-h-[28rem] md:min-h-[34rem]">
+                <Image
+                  src="/media/hero-bmw.jpg"
+                  alt="Atelier Custom Bike"
+                  fill
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="hero-shot-overlay" />
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
+                  <p className="neo-kicker text-white/60">Atelier / magasin / ancrage</p>
+                  <p className="display-font mt-3 text-[2.5rem] leading-[0.88] text-white md:text-[4rem]">
+                    {business.address}
+                  </p>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-white/76 md:text-base">
+                    L&apos;adresse n&apos;est pas un detail de footer. Elle fait partie du parcours
+                    et de la confiance.
+                  </p>
+                </div>
+              </div>
             </Reveal>
-            <Reveal delay={0.08}>
-              <h1 className="display-font mt-6 text-[3.6rem] leading-[0.9] text-[#111111] md:text-[5rem]">
-                Un atelier pensé
-                <span className="block text-black/44">pour rouler, réparer et signer.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-6 max-w-xl text-base leading-8 text-black/64">
-                Custom Bike accueille les motos, scooters et trois-roues dans un atelier à
-                Montreuil où la mécanique sérieuse rencontre une vraie culture du détail visuel.
-                L’objectif n’est pas seulement de remettre en route, mais de remettre en valeur.
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      <section className="section-shell bg-[var(--ink)] px-4 py-18 text-white md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+            <div>
+              <Reveal>
+                <SectionLabel tone="light">Positionnement</SectionLabel>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-white md:text-[4.6rem]">
+                  Pas seulement
+                  <span className="block text-white/58">un garage mecanique.</span>
+                </h2>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.12}>
+              <p className="max-w-2xl text-sm leading-8 text-white/72 md:text-base">
+                L&apos;atelier prend la machine complete en compte: fonctionnement, confort, image,
+                usage quotidien, accessoires et restitution propre.
               </p>
             </Reveal>
           </div>
 
-          <Reveal delay={0.12}>
-            <div className="image-panel min-h-[30rem] bg-black">
-              <Image
-                src="/media/hero-bmw.jpg"
-                alt="Atelier Custom Bike"
-                fill
-                sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
-              />
-              <div className="hero-main-overlay" />
-              <div className="masonry-copy">
-                <p className="project-kicker">Atelier / magasin</p>
-                <p className="display-font text-[2.6rem] leading-none text-white">
-                  {business.address}
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {workshopValues.map((value, index) => (
+              <Reveal key={value.title} delay={0.03 * index}>
+                <HoverTile tilt={index % 2 === 0 ? -0.6 : 0.6}>
+                  <article className="neo-panel neo-panel-dark h-full p-5 md:p-6">
+                    <p className="display-font text-[2rem] leading-[0.92] text-white">
+                      {value.title}
+                    </p>
+                    <p className="mt-4 text-sm leading-7 text-white/72">{value.text}</p>
+                  </article>
+                </HoverTile>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div>
+              <Reveal>
+                <SectionLabel>Confiance visible</SectionLabel>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
+                  Des profils publics,
+                  <span className="block text-[var(--red)]">mais aussi le client du quotidien.</span>
+                </h2>
+              </Reveal>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {trustGuests.map((guest, index) => (
+                  <Reveal key={guest} delay={0.02 * index}>
+                    <div className="neo-chip">{guest}</div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <Reveal delay={0.12} direction="right">
+              <div className="neo-panel neo-panel-soft p-6 md:p-7">
+                <p className="neo-kicker text-[var(--ink-faint)]">Retour client</p>
+                <p className="mt-4 text-base leading-8 text-[var(--ink-soft)] md:text-lg">
+                  &ldquo;{testimonials[1].quote}&rdquo;
                 </p>
+                <footer className="mt-6 border-t border-[var(--line)] pt-4">
+                  <p className="display-font text-[1.8rem] leading-none text-[var(--ink)]">
+                    {testimonials[1].author}
+                  </p>
+                  <p className="mt-2 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
+                    {testimonials[1].meta}
+                  </p>
+                </footer>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-[var(--red)] px-4 py-18 text-white md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+            <div>
+              <Reveal>
+                <SectionLabel tone="light">Pieces & partenaires</SectionLabel>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-white md:text-[4.6rem]">
+                  Les bonnes references,
+                  <span className="block text-white/60">posees pour durer.</span>
+                </h2>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.12}>
+              <div className="flex flex-wrap gap-3">
+                {brandPartners.map((brand, index) => (
+                  <Reveal key={brand} delay={0.02 * index}>
+                    <div className="neo-chip neo-chip-dark">{brand}</div>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <div className="neo-panel neo-panel-metal p-6 md:p-8">
+              <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
+                <div>
+                  <SectionLabel>A suivre</SectionLabel>
+                  <p className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
+                    Voir les services
+                    <span className="block text-[var(--red)]">ou parler du projet.</span>
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3 lg:justify-end">
+                  <ButtonLink href="/services" label="Voir les services" />
+                  <ButtonLink href="/contact" label="Contacter l'atelier" variant="secondary" />
+                </div>
               </div>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="section-shell section-carbon py-22 text-white lg:py-28">
-        <div className="mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-10">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              {
-                title: "Multi-marques",
-                text: "BMW, Honda, Yamaha, scooters urbains et machines plus exigeantes.",
-              },
-              {
-                title: "50cc à 1800cc",
-                text: "L'atelier couvre les petites cylindrées comme les projets plus lourds.",
-              },
-              {
-                title: "10h - 18h",
-                text: "Une plage horaire claire, pensée pour simplifier le passage atelier.",
-              },
-              {
-                title: "Vente & location",
-                text: "Le site assume aussi la partie mobilité, pas uniquement la réparation.",
-              },
-            ].map((item, index) => (
-              <Reveal key={item.title} delay={0.04 * index}>
-                <article className="assurance-card h-full">
-                  <p className="display-font text-[2.2rem] leading-none text-white">{item.title}</p>
-                  <p className="mt-4 text-sm leading-7 text-white/66">{item.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell section-white py-22 lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel>Notre manière de travailler</SectionLabel>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-[#111111] md:text-[4.4rem]">
-                Sérieux mécanique,
-                <span className="block text-black/44">lecture esthétique.</span>
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              "Devis clairs avant intervention et suivi lisible côté atelier.",
-              "Réparations, révisions, accessoires et projets custom au même endroit.",
-              "Véhicule de courtoisie possible en option payante selon disponibilité.",
-              "Sélection de pièces et de marques reconnues pour éviter les montages médiocres.",
-            ].map((line, index) => (
-              <Reveal key={line} delay={0.05 * index} direction={index % 2 === 0 ? "left" : "right"}>
-                <div className="contact-card">
-                  <p className="text-sm leading-8 text-black/64">{line}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell section-metal py-22 text-white lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel tone="light">Pièces & partenaires</SectionLabel>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-white md:text-[4.5rem]">
-                Des références utiles,
-                <span className="block text-white/54">pas des accessoires choisis au hasard.</span>
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="brands-wall">
-            {brandPartners.map((brand, index) => (
-              <Reveal key={brand} delay={0.03 * index}>
-                <div className="brand-chip">
-                  <span className="display-font text-[2rem] leading-none text-white">{brand}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell section-oxide py-22 text-white lg:py-28">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.84fr_1.16fr] lg:px-10">
-          <div>
-            <Reveal>
-              <SectionLabel tone="light">Confiance</SectionLabel>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display-font mt-6 text-[3.2rem] leading-[0.9] text-white md:text-[4.5rem]">
-                Une clientèle large,
-                <span className="block text-white/56">des profils publics aux clients du quotidien.</span>
-              </h2>
-            </Reveal>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {trustGuests.map((guest, index) => (
-                <Reveal key={guest} delay={0.03 * index}>
-                  <div className="trust-pill">{guest}</div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <Reveal delay={0.14}>
-            <div className="testimonial-stage">
-              <Stars />
-              <p className="mt-6 text-2xl leading-10 text-white md:text-[2rem] md:leading-[1.7]">
-                &ldquo;{testimonials[1].quote}&rdquo;
-              </p>
-              <footer className="mt-8 border-t border-white/10 pt-5">
-                <p className="display-font text-[2rem] leading-none text-white">
-                  {testimonials[1].author}
-                </p>
-                <p className="mt-2 text-[0.72rem] uppercase tracking-[0.3em] text-white/50">
-                  {testimonials[1].meta}
-                </p>
-              </footer>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section-shell section-paper py-20">
-        <div className="mx-auto flex w-full max-w-7xl flex-wrap gap-3 px-5 md:px-8 lg:px-10">
-          <ButtonLink href="/services" label="Voir les services" variant="light" />
-          <ButtonLink href="/contact" label="Contacter l'atelier" variant="ghost" />
         </div>
       </section>
     </>
