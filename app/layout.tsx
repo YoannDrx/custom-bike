@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Archivo_Black, Bebas_Neue, IBM_Plex_Mono, Monoton, Space_Grotesk } from "next/font/google";
+import {
+  Archivo_Black,
+  Bebas_Neue,
+  Fugaz_One,
+  IBM_Plex_Mono,
+  Monoton,
+  Space_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -25,6 +32,12 @@ const monoton = Monoton({
   weight: "400",
 });
 
+const fugazOne = Fugaz_One({
+  variable: "--font-fugaz",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 const plexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
@@ -33,11 +46,11 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Custom Bike | Atelier neo-brutaliste moto & scooter a Montreuil",
+    default: "Custom Bike | Atelier moto & scooter premium — Montreuil",
     template: "%s | Custom Bike",
   },
   description:
-    "Custom Bike repense l'atelier moto et scooter a Montreuil avec une experience visuelle forte: revisions, reparations, LED, accessoires, assurances, vente et location.",
+    "Custom Bike, atelier moto et scooter à Montreuil. Révisions, réparations, LED sur mesure, accessoires, dossiers assurance, vente et location. Du 50cc à la 1800cc.",
 };
 
 export default function RootLayout({
@@ -48,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${spaceGrotesk.variable} ${archivoBlack.variable} ${plexMono.variable} ${bebasNeue.variable} ${monoton.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${archivoBlack.variable} ${plexMono.variable} ${bebasNeue.variable} ${monoton.variable} ${fugazOne.variable} h-full antialiased`}
     >
       <body className="site-body min-h-full">{children}</body>
     </html>

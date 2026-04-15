@@ -6,10 +6,12 @@ export function SiteFooter() {
   return (
     <footer className="footer-shell">
       <div className="footer-inner">
-        <div className="grid gap-8 lg:grid-cols-4">
-          <div className="neo-panel neo-panel-red p-6 md:p-7">
-            <div className="flex items-center gap-4">
-              <div className="site-brand-logo !h-[4.5rem] !w-[4.5rem] !rounded-[1.4rem] !border-white !shadow-none">
+        {/* Top row */}
+        <div className="footer-top-grid">
+          {/* Brand */}
+          <div className="footer-brand-col">
+            <div className="footer-brand-mark">
+              <div className="footer-brand-logo">
                 <Image
                   src="/media/custombike-logo.jpg"
                   alt="Logo Custom Bike"
@@ -18,71 +20,101 @@ export function SiteFooter() {
                   className="h-full w-full object-cover"
                 />
               </div>
-
               <div>
-                <p className="neo-kicker text-white/70">Montreuil / atelier / custom</p>
-                <p className="display-font mt-2 text-[2.7rem] leading-none">Custom Bike</p>
+                <p className="footer-brand-name">Custom Bike</p>
+                <p className="footer-brand-sub">Montreuil · 93</p>
               </div>
             </div>
 
-            <p className="mt-5 max-w-xl text-sm leading-8 text-white/78 md:text-base">
-              Revisions, reparations, sellerie, accessoires, LED, dossiers assurance, vente et
-              location. Le site devient aussi assumé que les machines qui sortent de l&apos;atelier.
+            <p className="footer-brand-text">
+              Atelier moto &amp; scooter toutes cylindrées. Révisions, réparations, custom LED,
+              accessoires, dossiers assurance, vente et location.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={business.phoneHref} className="neo-button neo-button-secondary">
-                <span>{business.phoneDisplay}</span>
-                <span className="neo-button-mark" />
+            <div className="footer-contact-pills">
+              <a href={business.phoneHref} className="footer-pill footer-pill-primary">
+                {business.phoneDisplay}
               </a>
-              <a href={business.emailHref} className="neo-button neo-button-dark">
-                <span>Ecrire</span>
-                <span className="neo-button-mark" />
+              <a href={business.emailHref} className="footer-pill">
+                {business.email}
               </a>
             </div>
           </div>
 
-          <div>
-            <p className="footer-heading">Navigation</p>
-            <div className="footer-list">
+          {/* Navigation */}
+          <div className="footer-col">
+            <p className="footer-col-heading">Pages</p>
+            <ul className="footer-link-list">
               {navigation.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {item.label}
-                </Link>
+                <li key={item.href}>
+                  <Link href={item.href} className="footer-link">
+                    {item.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <div>
-            <p className="footer-heading">Coordonnees</p>
-            <div className="footer-list">
-              <a href={business.phoneHref}>{business.phoneDisplay}</a>
-              <a href={business.emailHref}>{business.email}</a>
-              <a href={business.mapHref} target="_blank" rel="noreferrer">
-                {business.address}
-              </a>
-            </div>
+          {/* Adresse */}
+          <div className="footer-col">
+            <p className="footer-col-heading">Adresse</p>
+            <ul className="footer-link-list">
+              <li>
+                <a href={business.mapHref} target="_blank" rel="noreferrer" className="footer-link">
+                  {business.address}
+                </a>
+              </li>
+              <li className="footer-hours-block">
+                {business.hours.map((line) => (
+                  <span key={line} className="footer-hour-line">
+                    {line}
+                  </span>
+                ))}
+              </li>
+            </ul>
           </div>
 
-          <div>
-            <p className="footer-heading">Horaires & reseaux</p>
-            <div className="footer-list">
-              {business.hours.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-              <a href={business.socials.instagram} target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-              <a href={business.socials.tiktok} target="_blank" rel="noreferrer">
-                TikTok
-              </a>
-            </div>
+          {/* Réseaux */}
+          <div className="footer-col">
+            <p className="footer-col-heading">Réseaux</p>
+            <ul className="footer-link-list">
+              <li>
+                <a
+                  href={business.socials.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-link footer-social-link"
+                >
+                  <span className="footer-social-icon">IG</span>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={business.socials.tiktok}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-link footer-social-link"
+                >
+                  <span className="footer-social-icon">TK</span>
+                  TikTok
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="footer-divider" />
+
+        {/* Bottom */}
         <div className="footer-bottom">
-          <p>Custom Bike / Montreuil / Atelier moto & scooter</p>
-          <p>Neo-brutaliste dehors, precision dedans</p>
+          <p className="footer-copy">
+            © {new Date().getFullYear()} Custom Bike · Montreuil, Seine-Saint-Denis
+          </p>
+          <p className="footer-tagline">
+            Repair · Custom · LED · Insurance · Mobility
+          </p>
         </div>
       </div>
     </footer>

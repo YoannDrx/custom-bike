@@ -5,52 +5,55 @@ import { brandPartners, business, testimonials, trustGuests } from "@/lib/site-c
 const workshopValues = [
   {
     title: "Lecture claire",
-    text: "Le client doit comprendre le besoin, le geste atelier et le resultat vise sans friction.",
+    text: "Le client comprend le besoin, le geste atelier et le résultat visé sans friction ni surprise.",
   },
   {
     title: "Finition propre",
-    text: "Un montage utile perd tout son interet s'il vieillit mal ou s'il se lit comme du bricolage.",
+    text: "Un montage utile perd tout son intérêt s'il vieillit mal ou se lit comme du bricolage.",
   },
   {
     title: "Double culture",
-    text: "La mecanique serieuse et l'esthetique ne sont pas traitees comme deux mondes separes.",
+    text: "La mécanique sérieuse et l'esthétique ne sont pas deux mondes séparés à Custom Bike.",
   },
   {
     title: "Ancrage local",
-    text: "Montreuil, accueil reel, suivi simple, passage en atelier et adresse tres visible.",
+    text: "Montreuil, accueil réel, suivi simple, passage atelier et adresse très visible.",
   },
 ];
 
 export function AboutPage() {
   return (
     <>
-      <section className="section-shell px-4 pb-18 pt-4 md:px-6 lg:pb-22">
+      <section className="section-shell px-4 pb-16 pt-4 md:px-6 lg:pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="pt-4">
               <Reveal>
-                <SectionLabel tone="accent">A propos</SectionLabel>
+                <SectionLabel tone="accent">À propos</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
                 <h1 className="display-font mt-6 text-[3.2rem] leading-[0.84] text-[var(--ink)] md:text-[5.2rem]">
                   Un atelier
-                  <span className="block text-[var(--red)]">qui remet en route</span>
-                  <span className="block">et remet en valeur.</span>
+                  <span className="block" style={{ color: "var(--vice-pink)" }}>
+                    qui remet en route
+                  </span>
+                  <span className="block">et en valeur.</span>
                 </h1>
               </Reveal>
               <Reveal delay={0.14}>
                 <p className="mt-5 max-w-xl text-base leading-8 text-[var(--ink-soft)]">
-                  La refonte change le ton du site pour coller a l&apos;identite reelle de Custom
-                  Bike: precis, visuel, urbain, premium et assume sans surjouer.
+                  Custom Bike à Montreuil, c&apos;est l&apos;atelier qui prend la machine entière en
+                  compte : mécanique, esthétique, image et restitution propre. Précis, visuel,
+                  urbain, premium et assumé sans surjouer.
                 </p>
               </Reveal>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {[
-                  { label: "Multi-marques", value: "BMW, Honda, Yamaha..." },
-                  { label: "Cadence", value: "10h / 18h" },
-                  { label: "Offre", value: "Atelier + custom + mobilite" },
-                  { label: "Adresse", value: "Montreuil" },
+                  { label: "Multi-marques", value: "BMW, Honda, Yamaha…" },
+                  { label: "Horaires", value: "10h — 18h" },
+                  { label: "Offre", value: "Atelier + Custom + Mobilité" },
+                  { label: "Adresse", value: "Montreuil / 93" },
                 ].map((item, index) => (
                   <Reveal
                     key={item.label}
@@ -59,7 +62,7 @@ export function AboutPage() {
                   >
                     <HoverTile tilt={index % 2 === 0 ? -0.8 : 0.8}>
                       <div className="neo-panel p-5">
-                        <p className="neo-kicker text-[var(--ink-faint)]">{item.label}</p>
+                        <p className="neo-kicker">{item.label}</p>
                         <p className="display-font mt-3 text-[1.9rem] leading-none text-[var(--ink)]">
                           {item.value}
                         </p>
@@ -74,20 +77,28 @@ export function AboutPage() {
               <div className="neo-image-frame min-h-[28rem] md:min-h-[34rem]">
                 <Image
                   src="/media/hero-bmw.jpg"
-                  alt="Atelier Custom Bike"
+                  alt="Atelier Custom Bike Montreuil"
                   fill
                   sizes="(min-width: 1024px) 48vw, 100vw"
                   className="object-cover"
                 />
                 <div className="hero-shot-overlay" />
                 <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
-                  <p className="neo-kicker text-white/60">Atelier / magasin / ancrage</p>
-                  <p className="display-font mt-3 text-[2.5rem] leading-[0.88] text-white md:text-[4rem]">
+                  <p className="neo-kicker" style={{ color: "rgba(255,255,255,0.54)" }}>
+                    Atelier / magasin / ancrage
+                  </p>
+                  <p
+                    className="display-font mt-3 text-white md:text-[3.5rem]"
+                    style={{ fontSize: "2.2rem", lineHeight: 0.88 }}
+                  >
                     {business.address}
                   </p>
-                  <p className="mt-4 max-w-xl text-sm leading-7 text-white/76 md:text-base">
-                    L&apos;adresse n&apos;est pas un detail de footer. Elle fait partie du parcours
-                    et de la confiance.
+                  <p
+                    className="mt-4 max-w-xl text-sm leading-7 md:text-base"
+                    style={{ color: "rgba(255,255,255,0.72)" }}
+                  >
+                    L&apos;adresse ne se cache pas dans un footer. Elle fait partie du parcours et
+                    de la confiance client.
                   </p>
                 </div>
               </div>
@@ -98,7 +109,7 @@ export function AboutPage() {
 
       <div className="section-divider" />
 
-      <section className="section-shell bg-[var(--ink)] px-4 py-18 text-white md:px-6 lg:py-22">
+      <section className="section-shell gta-dark-section px-4 py-16 md:px-6 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
@@ -106,17 +117,17 @@ export function AboutPage() {
                 <SectionLabel tone="light">Positionnement</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
-                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-white md:text-[4.6rem]">
+                <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
                   Pas seulement
-                  <span className="block text-white/58">un garage mecanique.</span>
+                  <span className="block text-[var(--ink-soft)]">un garage mécanique.</span>
                 </h2>
               </Reveal>
             </div>
 
             <Reveal delay={0.12}>
-              <p className="max-w-2xl text-sm leading-8 text-white/72 md:text-base">
-                L&apos;atelier prend la machine complete en compte: fonctionnement, confort, image,
-                usage quotidien, accessoires et restitution propre.
+              <p className="max-w-2xl text-sm leading-8 text-[var(--ink-soft)] md:text-base">
+                L&apos;atelier prend la machine complète en compte : fonctionnement, confort, image,
+                usage quotidien, accessoires et restitution propre à chaque intervention.
               </p>
             </Reveal>
           </div>
@@ -126,10 +137,10 @@ export function AboutPage() {
               <Reveal key={value.title} delay={0.03 * index}>
                 <HoverTile tilt={index % 2 === 0 ? -0.6 : 0.6}>
                   <article className="neo-panel neo-panel-dark h-full p-5 md:p-6">
-                    <p className="display-font text-[2rem] leading-[0.92] text-white">
+                    <p className="display-font text-[2rem] leading-[0.92] text-[var(--ink)]">
                       {value.title}
                     </p>
-                    <p className="mt-4 text-sm leading-7 text-white/72">{value.text}</p>
+                    <p className="mt-4 text-sm leading-7 text-[var(--ink-soft)]">{value.text}</p>
                   </article>
                 </HoverTile>
               </Reveal>
@@ -138,7 +149,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+      <section className="section-shell px-4 py-16 md:px-6 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
@@ -148,7 +159,9 @@ export function AboutPage() {
               <Reveal delay={0.08}>
                 <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
                   Des profils publics,
-                  <span className="block text-[var(--red)]">mais aussi le client du quotidien.</span>
+                  <span className="block" style={{ color: "var(--vice-pink)" }}>
+                    et le client du quotidien.
+                  </span>
                 </h2>
               </Reveal>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -162,15 +175,15 @@ export function AboutPage() {
 
             <Reveal delay={0.12} direction="right">
               <div className="neo-panel neo-panel-soft p-6 md:p-7">
-                <p className="neo-kicker text-[var(--ink-faint)]">Retour client</p>
-                <p className="mt-4 text-base leading-8 text-[var(--ink-soft)] md:text-lg">
+                <p className="neo-kicker">Retour client</p>
+                <p className="mt-4 text-base leading-8 text-[var(--ink)] md:text-lg">
                   &ldquo;{testimonials[1].quote}&rdquo;
                 </p>
-                <footer className="mt-6 border-t border-[var(--line)] pt-4">
+                <footer className="mt-6 border-t pt-4" style={{ borderColor: "var(--line)" }}>
                   <p className="display-font text-[1.8rem] leading-none text-[var(--ink)]">
                     {testimonials[1].author}
                   </p>
-                  <p className="mt-2 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
+                  <p className="mt-2 text-[0.7rem] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
                     {testimonials[1].meta}
                   </p>
                 </footer>
@@ -180,17 +193,22 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="section-shell bg-[var(--red)] px-4 py-18 text-white md:px-6 lg:py-22">
+      <section
+        className="section-shell px-4 py-16 md:px-6 lg:py-20"
+        style={{ background: "linear-gradient(135deg, var(--red-deep) 0%, var(--red) 100%)" }}
+      >
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
               <Reveal>
-                <SectionLabel tone="light">Pieces & partenaires</SectionLabel>
+                <SectionLabel tone="light">Pièces &amp; partenaires</SectionLabel>
               </Reveal>
               <Reveal delay={0.08}>
                 <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-white md:text-[4.6rem]">
-                  Les bonnes references,
-                  <span className="block text-white/60">posees pour durer.</span>
+                  Les bonnes références,
+                  <span className="block" style={{ color: "rgba(255,255,255,0.62)" }}>
+                    posées pour durer.
+                  </span>
                 </h2>
               </Reveal>
             </div>
@@ -208,16 +226,18 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="section-shell px-4 py-18 md:px-6 lg:py-22">
+      <section className="section-shell px-4 py-16 md:px-6 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="neo-panel neo-panel-metal p-6 md:p-8">
               <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
                 <div>
-                  <SectionLabel>A suivre</SectionLabel>
+                  <SectionLabel>À suivre</SectionLabel>
                   <p className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
                     Voir les services
-                    <span className="block text-[var(--red)]">ou parler du projet.</span>
+                    <span className="block" style={{ color: "var(--vice-pink)" }}>
+                      ou parler du projet.
+                    </span>
                   </p>
                 </div>
 

@@ -6,24 +6,24 @@ import { business } from "@/lib/site-content";
 
 const serviceOptions = [
   {
-    label: "Revision / entretien",
-    detail: "Forfait atelier, controle general et suivi mecanique lisible.",
+    label: "Révision / entretien",
+    detail: "Forfait atelier, contrôle général et suivi mécanique.",
   },
   {
-    label: "Reparation / diagnostic",
-    detail: "Panne, remise en etat ou besoin de lecture technique claire.",
+    label: "Réparation / diagnostic",
+    detail: "Panne, remise en état ou lecture technique claire.",
   },
   {
     label: "LED / custom",
-    detail: "Logos LED, feux additionnels, signature visuelle, sellerie ou covering.",
+    detail: "Logos LED, feux additionnels, sellerie ou covering.",
   },
   {
-    label: "Accessoires / electronique",
-    detail: "CarPlay, Quad Lock, instrumentation, dashcam et accessoires utiles.",
+    label: "Accessoires / électronique",
+    detail: "CarPlay, Quad Lock, instrumentation, dashcam.",
   },
   {
     label: "Vente / location",
-    detail: "Disponibilite, besoin de mobilite ou vehicule relais atelier.",
+    detail: "Disponibilité, mobilité ou véhicule relais atelier.",
   },
 ];
 
@@ -55,18 +55,18 @@ export function ContactForm() {
     event.preventDefault();
 
     const lines = [
-      `Nom: ${form.lastName}`,
-      `Prenom: ${form.firstName}`,
-      `Telephone: ${form.phone}`,
-      `E-mail: ${form.email}`,
-      `Vehicule: ${form.vehicle || "Non precise"}`,
-      `Service: ${form.service}`,
+      `Nom : ${form.lastName}`,
+      `Prénom : ${form.firstName}`,
+      `Téléphone : ${form.phone}`,
+      `E-mail : ${form.email}`,
+      `Véhicule : ${form.vehicle || "Non précisé"}`,
+      `Prestation : ${form.service}`,
       "",
       form.message,
     ];
 
     const params = new URLSearchParams({
-      subject: `Demande site Custom Bike - ${form.service}`,
+      subject: `Demande Custom Bike — ${form.service}`,
       body: lines.join("\n"),
     });
 
@@ -80,157 +80,129 @@ export function ContactForm() {
       className="contact-form-card"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.22 }}
+      viewport={{ once: true, amount: 0.12 }}
       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="grid gap-6 xl:grid-cols-2">
-        <div className="grid gap-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="contact-field">
-              <span>Prenom</span>
-              <input
-                value={form.firstName}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, firstName: event.target.value }))
-                }
-                placeholder="Nadia"
-                required
-              />
-            </label>
+      {/* Choix de prestation */}
+      <div className="cf-section">
+        <p className="cf-section-label">Prestation</p>
+        <div className="cf-service-grid">
+          {serviceOptions.map((option) => {
+            const active = form.service === option.label;
+            return (
+              <button
+                key={option.label}
+                type="button"
+                aria-pressed={active}
+                className={`cf-service-btn ${active ? "cf-service-btn-active" : ""}`}
+                onClick={() => setForm((c) => ({ ...c, service: option.label }))}
+              >
+                <span className="cf-service-dot" />
+                <span className="cf-service-label">{option.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-            <label className="contact-field">
-              <span>Nom</span>
-              <input
-                value={form.lastName}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, lastName: event.target.value }))
-                }
-                placeholder="Bensaid"
-                required
-              />
-            </label>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="contact-field">
-              <span>Telephone</span>
-              <input
-                value={form.phone}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, phone: event.target.value }))
-                }
-                placeholder="06 00 00 00 00"
-                required
-              />
-            </label>
-
-            <label className="contact-field">
-              <span>E-mail</span>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, email: event.target.value }))
-                }
-                placeholder="vous@email.com"
-                required
-              />
-            </label>
-          </div>
-
-          <label className="contact-field">
-            <span>Vehicule</span>
+      {/* Identité */}
+      <div className="cf-section">
+        <p className="cf-section-label">Vos coordonnées</p>
+        <div className="cf-row">
+          <label className="cf-field">
+            <span className="cf-label">Prénom</span>
             <input
-              value={form.vehicle}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, vehicle: event.target.value }))
-              }
-              placeholder="BMW RT 1250, Honda Integra, Tmax..."
+              className="cf-input"
+              value={form.firstName}
+              onChange={(e) => setForm((c) => ({ ...c, firstName: e.target.value }))}
+              placeholder="Jean"
+              required
             />
           </label>
-
-          <label className="contact-field">
-            <span>Message</span>
-            <textarea
-              value={form.message}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, message: event.target.value }))
-              }
-              placeholder="Le besoin, l'etat du vehicule, la contrainte de temps et ce que vous voulez changer."
-              rows={7}
+          <label className="cf-field">
+            <span className="cf-label">Nom</span>
+            <input
+              className="cf-input"
+              value={form.lastName}
+              onChange={(e) => setForm((c) => ({ ...c, lastName: e.target.value }))}
+              placeholder="Dupont"
               required
             />
           </label>
         </div>
-
-        <div className="grid gap-4">
-          <div className="neo-panel neo-panel-dark p-5 md:p-6">
-            <p className="neo-kicker text-white/62">Selection rapide</p>
-            <p className="display-font mt-3 text-[2rem] leading-[0.92] md:text-[2.6rem]">
-              Le bon sujet
-              <span className="block text-white/60">des le premier message.</span>
-            </p>
-            <p className="mt-4 text-sm leading-7 text-white/70">
-              Le formulaire reste simple, mais la demande doit etre bien cadree pour accelerer la
-              reponse atelier.
-            </p>
-
-            <div className="mt-5 grid gap-3">
-              {serviceOptions.map((option, index) => {
-                const active = form.service === option.label;
-
-                return (
-                  <motion.button
-                    key={option.label}
-                    type="button"
-                    aria-pressed={active}
-                    className={`service-option ${active ? "service-option-active" : ""}`}
-                    onClick={() =>
-                      setForm((current) => ({
-                        ...current,
-                        service: option.label,
-                      }))
-                    }
-                    whileHover={{ y: -4, x: index % 2 === 0 ? 2 : -2 }}
-                    whileTap={{ scale: 0.985 }}
-                  >
-                    <span className="service-option-title">{option.label}</span>
-                    <span className="service-option-copy">{option.detail}</span>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="neo-panel p-5 md:p-6">
-            <p className="neo-kicker text-[var(--ink-faint)]">Resume</p>
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              <div className="neo-chip neo-chip-soft">{form.service}</div>
-              <div className="neo-chip">{form.vehicle || "Vehicule a preciser"}</div>
-            </div>
-            <p className="mt-4 text-sm leading-7 text-[var(--ink-soft)]">
-              L&apos;envoi ouvre votre application e-mail avec un message deja structure pour
-              l&apos;atelier.
-            </p>
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button type="submit" className="neo-button neo-button-primary cursor-pointer">
-                <span>Preparer l&apos;e-mail</span>
-                <span className="neo-button-mark" />
-              </button>
-
-              <a href={business.emailHref} className="contact-inline-link">
-                {business.email}
-              </a>
-            </div>
-
-            {status === "ready" ? (
-              <p className="mt-4 text-sm leading-7 text-[var(--ink-soft)]">
-                Le brouillon est pret a partir dans votre application e-mail.
-              </p>
-            ) : null}
-          </div>
+        <div className="cf-row">
+          <label className="cf-field">
+            <span className="cf-label">Téléphone</span>
+            <input
+              className="cf-input"
+              type="tel"
+              value={form.phone}
+              onChange={(e) => setForm((c) => ({ ...c, phone: e.target.value }))}
+              placeholder="06 12 34 56 78"
+              required
+            />
+          </label>
+          <label className="cf-field">
+            <span className="cf-label">E-mail</span>
+            <input
+              className="cf-input"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm((c) => ({ ...c, email: e.target.value }))}
+              placeholder="vous@email.com"
+              required
+            />
+          </label>
         </div>
+      </div>
+
+      {/* Véhicule + message */}
+      <div className="cf-section">
+        <p className="cf-section-label">Votre machine &amp; demande</p>
+        <label className="cf-field">
+          <span className="cf-label">Véhicule</span>
+          <input
+            className="cf-input"
+            value={form.vehicle}
+            onChange={(e) => setForm((c) => ({ ...c, vehicle: e.target.value }))}
+            placeholder="Marque, modèle, année…"
+          />
+        </label>
+        <label className="cf-field">
+          <span className="cf-label">Message</span>
+          <textarea
+            className="cf-input cf-textarea"
+            value={form.message}
+            onChange={(e) => setForm((c) => ({ ...c, message: e.target.value }))}
+            placeholder="Décrivez le besoin, l'état du véhicule, vos contraintes…"
+            rows={5}
+            required
+          />
+        </label>
+      </div>
+
+      {/* Résumé + envoi */}
+      <div className="cf-footer">
+        <div className="cf-summary">
+          <span className="cf-summary-tag">{form.service}</span>
+          {form.vehicle && <span className="cf-summary-tag">{form.vehicle}</span>}
+        </div>
+
+        <div className="cf-actions">
+          <button type="submit" className="neo-button neo-button-primary cursor-pointer">
+            <span>Préparer l&apos;e-mail</span>
+            <span className="neo-button-mark" />
+          </button>
+          <a href={business.emailHref} className="cf-email-link">
+            {business.email}
+          </a>
+        </div>
+
+        {status === "ready" && (
+          <p className="cf-confirm">
+            Le brouillon est prêt dans votre application e-mail.
+          </p>
+        )}
       </div>
     </motion.form>
   );

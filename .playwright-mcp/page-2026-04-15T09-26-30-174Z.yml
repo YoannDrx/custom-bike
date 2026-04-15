@@ -1,0 +1,376 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner:
+      - generic [ref=e3]:
+        - link "Retour à l'accueil Custom Bike" [ref=e4] [cursor=pointer]:
+          - /url: /
+          - img "Logo Custom Bike" [ref=e6]
+          - generic [ref=e7]:
+            - paragraph [ref=e8]: Custom Bike
+            - paragraph [ref=e9]: Repairs · LED Custom · Insurance · Mobility
+        - navigation "Navigation principale" [ref=e10]:
+          - link "Accueil" [ref=e11] [cursor=pointer]:
+            - /url: /
+          - link "À propos" [ref=e12] [cursor=pointer]:
+            - /url: /a-propos
+          - link "Services" [ref=e13] [cursor=pointer]:
+            - /url: /services
+          - link "Vente & location" [ref=e14] [cursor=pointer]:
+            - /url: /vente-location
+          - link "Réalisations" [ref=e15] [cursor=pointer]:
+            - /url: /realisations
+          - link "Contact" [ref=e16] [cursor=pointer]:
+            - /url: /contact
+        - link "01 48 37 66 37" [ref=e18] [cursor=pointer]:
+          - /url: tel:+33148376637
+    - main [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - img "Custom Bike Night Garage" [ref=e23]
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e29]: Los Montreuil / 93 · Night Garage
+              - paragraph [ref=e31]: Repair · Custom · LED · Insurance · Mobility
+              - heading "Custom Bike" [level=1] [ref=e33]:
+                - text: Custom
+                - generic [ref=e34]: Bike
+              - paragraph [ref=e36]: Atelier moto & scooter toutes cylindrées à Montreuil. Réparations, custom LED, accessoires, gestion assurance, vente et location. Du 50cc à la 1800cc.
+              - generic [ref=e38]:
+                - link "Prendre rendez-vous" [ref=e40] [cursor=pointer]:
+                  - /url: /contact
+                  - generic [ref=e41]: Prendre rendez-vous
+                - link "Voir les builds" [ref=e44] [cursor=pointer]:
+                  - /url: /realisations
+                  - generic [ref=e45]: Voir les builds
+                - link "Instagram" [ref=e48] [cursor=pointer]:
+                  - /url: https://www.instagram.com/custom_bike93/
+                  - generic [ref=e49]: Instagram
+              - generic [ref=e52]:
+                - generic [ref=e53]:
+                  - generic [ref=e54]: 50cc+
+                  - generic [ref=e55]: jusqu'aux grosses cylindrées
+                - generic [ref=e56]:
+                  - generic [ref=e57]: 10-18
+                  - generic [ref=e58]: lundi au vendredi
+                - generic [ref=e59]:
+                  - generic [ref=e60]: Mtr
+                  - generic [ref=e61]: Montreuil / Seine-Saint-Denis
+              - generic [ref=e63]:
+                - generic [ref=e64]: Crew déjà vu au garage
+                - generic [ref=e65]:
+                  - generic [ref=e66]: Koba La D
+                  - generic [ref=e67]: Maes
+                  - generic [ref=e68]: Cyril Benzaquen
+                  - generic [ref=e69]: Mokhtar
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - img "Le garage qui fait sortir la machine du trafic." [ref=e75]
+                - generic [ref=e77]:
+                  - generic [ref=e78]: Dark Build
+                  - generic [ref=e79]: "★★★★★ Wanted: 0"
+                - generic [ref=e80]:
+                  - paragraph [ref=e81]: Vice pursuit
+                  - heading "Le garage qui fait sortir la machine du trafic." [level=2] [ref=e82]
+              - generic [ref=e83]:
+                - button "Vice pursuit Dark Build Vice pursuit" [ref=e84] [cursor=pointer]:
+                  - img "Vice pursuit" [ref=e86]
+                  - generic [ref=e87]:
+                    - paragraph [ref=e88]: Dark Build
+                    - paragraph [ref=e89]: Vice pursuit
+                - button "Neon custom Miami Lights Neon custom" [ref=e90] [cursor=pointer]:
+                  - img "Neon custom" [ref=e92]
+                  - generic [ref=e93]:
+                    - paragraph [ref=e94]: Miami Lights
+                    - paragraph [ref=e95]: Neon custom
+                - button "Street ready Downtown Build Street ready" [ref=e96] [cursor=pointer]:
+                  - img "Street ready" [ref=e98]
+                  - generic [ref=e99]:
+                    - paragraph [ref=e100]: Downtown Build
+                    - paragraph [ref=e101]: Street ready
+        - generic [ref=e103]:
+          - generic [ref=e104]: Pièces & références
+          - generic [ref=e106]: Akrapovic
+          - generic [ref=e108]: LeoVince
+          - generic [ref=e110]: Yasuni
+          - generic [ref=e112]: Malossi
+          - generic [ref=e114]: JCosta
+          - generic [ref=e116]: Polini
+          - generic [ref=e118]: Tucano
+          - generic [ref=e120]: Bagster
+          - generic [ref=e122]: Top Block
+          - generic [ref=e124]: Tecno Globe
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - paragraph [ref=e128]: Garage Cinematic
+              - heading "Les machines du garage" [level=2] [ref=e129]
+            - generic [ref=e130]: Vice City Edition
+          - generic [ref=e131]:
+            - img "Tmax Akrapovic" [ref=e133]
+            - generic [ref=e134]:
+              - button "Slide 1" [ref=e135] [cursor=pointer]
+              - button "Slide 2" [ref=e136] [cursor=pointer]
+              - button "Slide 3" [ref=e137] [cursor=pointer]
+              - button "Slide 4" [ref=e138] [cursor=pointer]
+              - button "Slide 5" [ref=e139] [cursor=pointer]
+            - generic:
+              - button "Slide précédente" [ref=e140] [cursor=pointer]: ←
+              - button "Slide suivante" [ref=e141] [cursor=pointer]: →
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - paragraph [ref=e145]: Vice City · Exhaust Custom
+                - heading "Tmax Akrapovic" [level=3] [ref=e146]
+                - paragraph [ref=e147]: Ligne Akrapovic montée propre. L'atelier touche aussi à la performance sonore.
+              - generic [ref=e149]: Tmax · Montreuil
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e156]: Game modes
+              - heading "Quatre entrées. Un seul garage vraiment crédible." [level=2] [ref=e158]:
+                - text: Quatre entrées.
+                - generic [ref=e159]: Un seul garage vraiment crédible.
+              - paragraph [ref=e161]: Réparer, customiser, gérer un dossier assurance ou rester mobile pendant l'intervention. Choisissez votre mode d'entrée.
+            - generic [ref=e163]:
+              - paragraph [ref=e164]: Client line
+              - paragraph [ref=e165]: “Ma RT 1250 est ressortie avec un rendu incroyable. Le montage LED est propre, la moto paraît vraiment montée d'origine.”
+              - generic [ref=e166]:
+                - paragraph [ref=e167]: Sofiane M.
+                - paragraph [ref=e168]: BMW RT 1250
+          - generic [ref=e169]:
+            - article [ref=e172]:
+              - img "Repair Run" [ref=e174]
+              - generic [ref=e175]: 50cc → 1800cc
+              - heading "Repair Run" [level=3] [ref=e176]
+              - paragraph [ref=e177]: Diagnostic, remise en état, entretien toutes cylindrées et suivi atelier lisible. Du 50cc à la 1800cc.
+            - article [ref=e180]:
+              - img "Neon Upgrade" [ref=e182]
+              - generic [ref=e183]: Custom
+              - heading "Neon Upgrade" [level=3] [ref=e184]
+              - paragraph [ref=e185]: LED, logos, feux additionnels, sellerie et finitions sur mesure qui signent vraiment la machine.
+            - article [ref=e188]:
+              - img "Insurance Escape" [ref=e190]
+              - generic [ref=e191]: Assurance
+              - heading "Insurance Escape" [level=3] [ref=e192]
+              - paragraph [ref=e193]: Lecture du sinistre, devis, coordination du dossier et restitution propre sans friction inutile.
+            - article [ref=e196]:
+              - img "Vice Mobility" [ref=e198]
+              - generic [ref=e199]: Mobilité
+              - heading "Vice Mobility" [level=3] [ref=e200]
+              - paragraph [ref=e201]: Vente, location et solutions relais atelier pour rester mobile pendant l'intervention.
+        - generic [ref=e203]:
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - generic [ref=e207]: Spotlight builds
+              - heading "Les motos doivent faire jaillir l'envie avant le devis." [level=2] [ref=e209]:
+                - text: Les motos doivent
+                - generic [ref=e210]: faire jaillir l'envie avant le devis.
+            - generic [ref=e212]:
+              - generic [ref=e213]:
+                - paragraph [ref=e214]: Hotline
+                - paragraph [ref=e215]: 01 48 37 66 37
+              - generic [ref=e216]:
+                - paragraph [ref=e217]: Base
+                - paragraph [ref=e218]: Montreuil / 93
+              - generic [ref=e219]:
+                - paragraph [ref=e220]: Social
+                - paragraph [ref=e221]: "@custombike"
+          - generic [ref=e222]:
+            - link [ref=e225] [cursor=pointer]:
+              - /url: https://www.instagram.com/custom_bike93/
+              - article [ref=e226]:
+                - img "BMW RT 1250 triple black" [ref=e228]
+                - paragraph [ref=e229]: LED
+                - heading "BMW RT 1250 triple black" [level=3] [ref=e230]
+                - paragraph [ref=e231]: Personnalisation lumineuse et présence visuelle plus radicale.
+            - link [ref=e234] [cursor=pointer]:
+              - /url: https://www.instagram.com/custom_bike93/
+              - article [ref=e235]:
+                - img "Goldwing avec logos LED" [ref=e237]
+                - paragraph [ref=e238]: LED
+                - heading "Goldwing avec logos LED" [level=3] [ref=e239]
+                - paragraph [ref=e240]: Une signature visuelle très forte pensée pour se voir immédiatement.
+            - link [ref=e243] [cursor=pointer]:
+              - /url: https://www.tiktok.com/@custombike/video/7419298293030587680
+              - article [ref=e244]:
+                - img "Compteur BMW M Sport" [ref=e246]
+                - paragraph [ref=e247]: Électronique
+                - heading "Compteur BMW M Sport" [level=3] [ref=e248]
+                - paragraph [ref=e249]: L'atelier touche aussi à l'expérience pilote et à l'instrumentation.
+          - link "Voir toutes les réalisations" [ref=e253] [cursor=pointer]:
+            - /url: /realisations
+            - generic [ref=e254]: Voir toutes les réalisations
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e261]: Night shift
+              - heading "Réparation sérieuse. Custom assumé. Dossiers simplifiés." [level=2] [ref=e263]:
+                - text: Réparation sérieuse.
+                - generic [ref=e264]: Custom assumé. Dossiers simplifiés.
+            - paragraph [ref=e266]: "L'atelier prend la machine entière en charge : fonctionnement, confort, image et restitution propre. Mécanique et esthétique ne sont pas deux mondes séparés."
+          - generic [ref=e267]:
+            - article [ref=e270]:
+              - img "Réparations & entretien" [ref=e272]
+              - paragraph [ref=e273]: Mode 01
+              - heading "Réparations & entretien" [level=3] [ref=e274]
+              - paragraph [ref=e275]: Custom Bike réalise la réparation et l'entretien de scooters et motos toutes cylindrées, du quotidien urbain jusqu'aux machines plus exigeantes.
+              - generic [ref=e276]:
+                - generic [ref=e277]: Réparation et entretien toutes cylindrées, du 50cc au 1800cc
+                - generic [ref=e278]: Forfaits révision et entretien avec pièces de qualité
+            - article [ref=e281]:
+              - img "Personnalisation & accessoires" [ref=e283]
+              - paragraph [ref=e284]: Mode 02
+              - heading "Personnalisation & accessoires" [level=3] [ref=e285]
+              - paragraph [ref=e286]: Custom Bike, c'est aussi la personnalisation du véhicule avec des pièces reconnues, des accessoires utiles et une vraie culture de la finition.
+              - generic [ref=e287]:
+                - generic [ref=e288]: Akrapovic, LeoVince et Yasuni pour les échappements
+                - generic [ref=e289]: Malossi, JCosta et Polini pour les variateurs et le gain de réponse
+            - article [ref=e292]:
+              - img "Prise en charge assurance" [ref=e294]
+              - paragraph [ref=e295]: Mode 03
+              - heading "Prise en charge assurance" [level=3] [ref=e296]
+              - paragraph [ref=e297]: Le sinistre ne doit pas être une perte de temps ou d'énergie. L'atelier simplifie la lecture du dossier, le chiffrage et la remise en état.
+              - generic [ref=e298]:
+                - generic [ref=e299]: Constat atelier rapide
+                - generic [ref=e300]: Devis et coordination du dossier
+        - generic [ref=e302]:
+          - generic [ref=e304]:
+            - generic [ref=e305]: Client line
+            - heading "Ce que disent les riders du garage." [level=2] [ref=e306]:
+              - text: Ce que disent
+              - generic [ref=e307]: les riders du garage.
+          - generic [ref=e308]:
+            - generic [ref=e310]:
+              - paragraph [ref=e311]: Retour client
+              - paragraph [ref=e312]: “Ma RT 1250 est ressortie avec un rendu incroyable. Le montage LED est propre, la moto paraît vraiment montée d'origine.”
+              - generic [ref=e313]:
+                - paragraph [ref=e314]: Sofiane M.
+                - paragraph [ref=e315]: BMW RT 1250
+            - generic [ref=e317]:
+              - paragraph [ref=e318]: Retour client
+              - paragraph [ref=e319]: “Très bon accueil, devis clair et réparation rapide. On sent qu'il y a une vraie exigence sur les finitions, pas juste sur la mécanique.”
+              - generic [ref=e320]:
+                - paragraph [ref=e321]: Camille R.
+                - paragraph [ref=e322]: Yamaha Tmax
+            - generic [ref=e324]:
+              - paragraph [ref=e325]: Retour client
+              - paragraph [ref=e326]: “Je voulais quelque chose de plus personnalisé sans tomber dans l'excès. Ils ont trouvé le bon équilibre entre style, confort et propreté de pose.”
+              - generic [ref=e327]:
+                - paragraph [ref=e328]: Yacine D.
+                - paragraph [ref=e329]: Honda Integra 750
+        - generic [ref=e332]:
+          - generic [ref=e333]:
+            - generic [ref=e335]: Quick briefing
+            - heading "Les vraies réponses. Avant d'appeler." [level=2] [ref=e337]:
+              - text: Les vraies réponses.
+              - generic [ref=e338]: Avant d'appeler.
+            - paragraph [ref=e340]: Quelques questions fréquentes, un accès direct au téléphone. Le reste se règle par message ou directement à l'atelier.
+            - generic [ref=e342]:
+              - paragraph [ref=e343]: Ride now, talk later.
+              - paragraph [ref=e344]: Appel rapide, devis ou formulaire. Le bon canal dépend du projet, pas d'une structure figée.
+              - generic [ref=e345]:
+                - link "Appeler" [ref=e347] [cursor=pointer]:
+                  - /url: tel:+33148376637
+                  - generic [ref=e348]: Appeler
+                - link "Formulaire" [ref=e351] [cursor=pointer]:
+                  - /url: /contact
+                  - generic [ref=e352]: Formulaire
+          - generic [ref=e355]:
+            - generic [ref=e356]:
+              - button "Custom Bike travaille sur quelles marques ? +" [expanded] [ref=e357] [cursor=pointer]:
+                - generic [ref=e358]: Custom Bike travaille sur quelles marques ?
+                - generic [ref=e359]: +
+              - generic [ref=e361]: L'atelier se positionne sur le multi-marques, avec une présence déjà très visible sur BMW, Honda, Yamaha et les scooters urbains.
+            - button "Est-ce seulement un garage mécanique ? +" [ref=e363] [cursor=pointer]:
+              - generic [ref=e364]: Est-ce seulement un garage mécanique ?
+              - generic [ref=e365]: +
+            - button "Peut-on louer un véhicule ou avoir un véhicule de courtoisie ? +" [ref=e367] [cursor=pointer]:
+              - generic [ref=e368]: Peut-on louer un véhicule ou avoir un véhicule de courtoisie ?
+              - generic [ref=e369]: +
+            - button "Comment se passe la prise en charge assurance ? +" [ref=e371] [cursor=pointer]:
+              - generic [ref=e372]: Comment se passe la prise en charge assurance ?
+              - generic [ref=e373]: +
+    - generic [ref=e375]:
+      - generic [ref=e378]:
+        - generic [ref=e381]: Atelier / Montreuil
+        - heading "Venir à l'atelier." [level=2] [ref=e382]:
+          - text: Venir à
+          - generic [ref=e383]: l'atelier.
+        - paragraph [ref=e384]: "Réparations, accueil, prise en charge assurance, vente, location et projets custom : l'expérience finit toujours au vrai comptoir, pas dans une promesse abstraite."
+        - generic [ref=e385]:
+          - link "Ouvrir l'itinéraire" [ref=e387] [cursor=pointer]:
+            - /url: https://maps.google.com/?q=17+rue+Voltaire+93100+Montreuil
+            - generic [ref=e388]: Ouvrir l'itinéraire
+          - link "Appeler l'atelier" [ref=e391] [cursor=pointer]:
+            - /url: tel:+33148376637
+            - generic [ref=e392]: Appeler l'atelier
+        - generic [ref=e394]:
+          - generic [ref=e395]: 17 rue Voltaire, 93100 Montreuil
+          - generic [ref=e397]: 01 48 37 66 37
+          - generic [ref=e399]: "Lundi au vendredi : 10h00 - 18h00"
+          - generic [ref=e401]: "Samedi : sur rendez-vous selon planning"
+          - generic [ref=e403]: "Dimanche : fermé"
+      - iframe [ref=e407]
+    - contentinfo [ref=e408]:
+      - generic [ref=e409]:
+        - generic [ref=e410]:
+          - generic [ref=e411]:
+            - generic [ref=e412]:
+              - img "Logo Custom Bike" [ref=e414]
+              - generic [ref=e415]:
+                - paragraph [ref=e416]: Custom Bike
+                - paragraph [ref=e417]: Montreuil · 93
+            - paragraph [ref=e418]: Atelier moto & scooter toutes cylindrées. Révisions, réparations, custom LED, accessoires, dossiers assurance, vente et location.
+            - generic [ref=e419]:
+              - link "01 48 37 66 37" [ref=e420] [cursor=pointer]:
+                - /url: tel:+33148376637
+              - link "custombike.idf@gmail.com" [ref=e421] [cursor=pointer]:
+                - /url: mailto:custombike.idf@gmail.com
+          - generic [ref=e422]:
+            - paragraph [ref=e423]: Pages
+            - list [ref=e424]:
+              - listitem [ref=e425]:
+                - link "Accueil" [ref=e426] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e427]:
+                - link "À propos" [ref=e428] [cursor=pointer]:
+                  - /url: /a-propos
+              - listitem [ref=e429]:
+                - link "Services" [ref=e430] [cursor=pointer]:
+                  - /url: /services
+              - listitem [ref=e431]:
+                - link "Vente & location" [ref=e432] [cursor=pointer]:
+                  - /url: /vente-location
+              - listitem [ref=e433]:
+                - link "Réalisations" [ref=e434] [cursor=pointer]:
+                  - /url: /realisations
+              - listitem [ref=e435]:
+                - link "Contact" [ref=e436] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e437]:
+            - paragraph [ref=e438]: Adresse
+            - list [ref=e439]:
+              - listitem [ref=e440]:
+                - link "17 rue Voltaire, 93100 Montreuil" [ref=e441] [cursor=pointer]:
+                  - /url: https://maps.google.com/?q=17+rue+Voltaire+93100+Montreuil
+              - listitem [ref=e442]:
+                - generic [ref=e443]: "Lundi au vendredi : 10h00 - 18h00"
+                - generic [ref=e444]: "Samedi : sur rendez-vous selon planning"
+                - generic [ref=e445]: "Dimanche : fermé"
+          - generic [ref=e446]:
+            - paragraph [ref=e447]: Réseaux
+            - list [ref=e448]:
+              - listitem [ref=e449]:
+                - link "IG Instagram" [ref=e450] [cursor=pointer]:
+                  - /url: https://www.instagram.com/custom_bike93/
+                  - generic [ref=e451]: IG
+                  - text: Instagram
+              - listitem [ref=e452]:
+                - link "TK TikTok" [ref=e453] [cursor=pointer]:
+                  - /url: https://www.tiktok.com/@custombike
+                  - generic [ref=e454]: TK
+                  - text: TikTok
+        - generic [ref=e456]:
+          - paragraph [ref=e457]: © 2026 Custom Bike · Montreuil, Seine-Saint-Denis
+          - paragraph [ref=e458]: Repair · Custom · LED · Insurance · Mobility
+  - button "Open Next.js Dev Tools" [ref=e464] [cursor=pointer]:
+    - img [ref=e465]
