@@ -474,14 +474,21 @@ export function HomePage() {
       </section>
 
       {/* ── BRAND BAND ─────────────────────── */}
-      <section className="section-shell vice-band px-4 py-4 md:px-6">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3">
-          <span className="vice-band-label">Pièces &amp; références</span>
-          {brandPartners.map((brand, index) => (
-            <Reveal key={brand} delay={0.02 * index}>
-              <span className="vice-band-chip">{brand}</span>
-            </Reveal>
-          ))}
+      <section className="vice-band">
+        <div className="vice-band-inner">
+          <div className="vice-band-label-col">
+            <span className="vice-band-label">Pièces &amp; références</span>
+          </div>
+          <div className="vice-band-scroll">
+            <div className="vice-band-track">
+              {[...brandPartners, ...brandPartners].map((brand, index) => (
+                <span key={`${brand}-${index}`} className="vice-band-chip">
+                  {brand}
+                  <span className="vice-band-sep" aria-hidden="true" />
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -491,21 +498,22 @@ export function HomePage() {
       {/* ── GAME MODES ─────────────────────── */}
       <section className="section-shell vice-section px-4 py-16 md:px-6 lg:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+          {/* Intro header — full width, plus d'espace */}
+          <div className="mb-10 grid gap-6 lg:grid-cols-[1.6fr_1fr] lg:items-end">
             <div>
               <Reveal>
                 <span className="vice-tag">Game modes</span>
               </Reveal>
               <Reveal delay={0.08}>
-                <h2 className="vice-section-title mt-5">
+                <h2 className="vice-section-title mt-5" style={{ maxWidth: "none" }}>
                   Quatre entrées.
                   <span>Un seul garage vraiment crédible.</span>
                 </h2>
               </Reveal>
               <Reveal delay={0.14}>
-                <p className="vice-section-copy mt-4 max-w-xl">
+                <p className="vice-section-copy mt-5 max-w-2xl">
                   Réparer, customiser, gérer un dossier assurance ou rester mobile pendant
-                  l'intervention. Choisissez votre mode d'entrée.
+                  l&apos;intervention. Choisissez votre mode d&apos;entrée.
                 </p>
               </Reveal>
             </div>
