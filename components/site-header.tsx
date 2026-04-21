@@ -6,14 +6,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { business, navigation } from "@/lib/site-content";
+import { authClient } from "@/lib/auth-client";
+import { LoginModal } from "@/components/auth/login-modal";
 
-export function SiteHeader() {
+export function SiteHeader({ cartCount = 0 }: { cartCount?: number }) {
+  const { data: session } = authClient.useSession();
+  const isAdmin = session?.user?.role === "admin";
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const lastYRef = useRef(0);
   const [hidden, setHidden] = useState(false);
   const [compact, setCompact] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const delta = latest - lastYRef.current;
@@ -95,6 +100,76 @@ export function SiteHeader() {
               {business.phoneDisplay}
             </a>
 
+            <Link
+              href="/panier"
+              aria-label={`Panier${cartCount ? ` (${cartCount})` : ""}`}
+              className="header-icon-chip"
+              onClick={() => setMobileOpen(false)}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-[1.1rem] w-[1.1rem]"
+              >
+                <path d="M4 4h2l2 12h11l2-8H7" />
+                <circle cx="9" cy="20" r="1.6" />
+                <circle cx="18" cy="20" r="1.6" />
+              </svg>
+              {cartCount > 0 ? (
+                <span className="header-icon-badge">{cartCount > 99 ? "99+" : cartCount}</span>
+              ) : null}
+            </Link>
+
+            {session ? (
+              <Link
+                href={isAdmin ? "/admin" : "/compte"}
+                aria-label={isAdmin ? "Dashboard admin" : "Mon compte"}
+                className="header-icon-chip"
+                onClick={() => setMobileOpen(false)}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-[1.1rem] w-[1.1rem]"
+                >
+                  <circle cx="12" cy="8" r="3.5" />
+                  <path d="M4 20c1.5-3.5 4.8-5 8-5s6.5 1.5 8 5" />
+                </svg>
+                {isAdmin ? <span className="header-icon-dot" /> : null}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                aria-label="Se connecter"
+                className="header-icon-chip"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setLoginOpen(true);
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-[1.1rem] w-[1.1rem]"
+                >
+                  <circle cx="12" cy="8" r="3.5" />
+                  <path d="M4 20c1.5-3.5 4.8-5 8-5s6.5 1.5 8 5" />
+                </svg>
+              </button>
+            )}
+
             <button
               type="button"
               aria-expanded={mobileOpen}
@@ -161,6 +236,8 @@ export function SiteHeader() {
           ) : null}
         </AnimatePresence>
       </div>
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </motion.header>
   );
 }

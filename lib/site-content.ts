@@ -21,10 +21,11 @@ export const business = {
 
 export const navigation = [
   { label: "Accueil", href: "/" },
-  { label: "À propos", href: "/a-propos" },
   { label: "Services", href: "/services" },
-  { label: "Vente & location", href: "/vente-location" },
+  { label: "Boutique", href: "/boutique" },
   { label: "Réalisations", href: "/realisations" },
+  { label: "Vente & location", href: "/vente-location" },
+  { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ];
 

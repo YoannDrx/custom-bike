@@ -1,6 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink, HoverTile, Reveal, SectionLabel } from "@/components/site-primitives";
 import { business, featuredProjects, galleryItems, testimonials } from "@/lib/site-content";
+
+type RealizationCard = {
+  id: string;
+  slug: string;
+  title: string;
+  bike: string | null;
+  category: string | null;
+  summary: string | null;
+  coverImage: string | null;
+};
 
 const socialVideos = [
   {
@@ -23,7 +34,11 @@ const socialVideos = [
   },
 ];
 
-export function RealisationsPage() {
+export function RealisationsPage({
+  customRealizations = [],
+}: {
+  customRealizations?: RealizationCard[];
+}) {
   return (
     <>
       <section className="section-shell px-4 pb-16 pt-4 md:px-6 lg:pb-20">
@@ -228,6 +243,70 @@ export function RealisationsPage() {
           </div>
         </div>
       </section>
+
+      {customRealizations.length > 0 ? (
+        <>
+          <div className="section-divider" />
+          <section className="section-shell px-4 py-16 md:px-6 lg:py-20">
+            <div className="mx-auto max-w-7xl">
+              <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+                <div>
+                  <Reveal>
+                    <SectionLabel tone="accent">Atelier — dernières sorties</SectionLabel>
+                  </Reveal>
+                  <Reveal delay={0.08}>
+                    <h2 className="display-font mt-6 text-[3rem] leading-[0.84] text-[var(--ink)] md:text-[4.6rem]">
+                      Nos derniers
+                      <span className="block" style={{ color: "var(--vice-cyan)" }}>
+                        projets sortis d&apos;atelier.
+                      </span>
+                    </h2>
+                  </Reveal>
+                </div>
+                <Reveal delay={0.12}>
+                  <p className="max-w-2xl text-sm leading-8 text-[var(--ink-soft)] md:text-base">
+                    Chaque pièce est photographiée après passage atelier — la galerie est mise à jour
+                    régulièrement par l&apos;équipe.
+                  </p>
+                </Reveal>
+              </div>
+
+              <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {customRealizations.map((item, index) => (
+                  <Reveal key={item.id} delay={0.04 * index}>
+                    <HoverTile tilt={index % 2 === 0 ? -0.8 : 0.8}>
+                      <Link href={`/realisations/${item.slug}`} className="block">
+                        <article className="neo-panel h-full p-4 md:p-5">
+                          <div className="neo-image-frame aspect-[4/5]">
+                            {item.coverImage ? (
+                              <Image
+                                src={item.coverImage}
+                                alt={item.title}
+                                fill
+                                sizes="(min-width: 1280px) 32vw, (min-width: 768px) 46vw, 100vw"
+                                className="object-cover"
+                              />
+                            ) : null}
+                          </div>
+                          <p className="neo-kicker mt-4">{item.category ?? item.bike ?? "Atelier"}</p>
+                          <h3 className="display-font mt-3 text-[1.85rem] leading-[0.9] text-[var(--ink)]">
+                            {item.title}
+                          </h3>
+                          {item.summary ? (
+                            <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
+                              {item.summary}
+                            </p>
+                          ) : null}
+                        </article>
+                      </Link>
+                    </HoverTile>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      ) : null}
 
       <div className="section-divider" />
 

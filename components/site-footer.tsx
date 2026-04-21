@@ -84,8 +84,15 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noreferrer"
                   className="footer-link footer-social-link"
+                  aria-label="Instagram Custom Bike"
                 >
-                  <span className="footer-social-icon">IG</span>
+                  <span className="footer-social-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                    </svg>
+                  </span>
                   Instagram
                 </a>
               </li>
@@ -95,8 +102,13 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noreferrer"
                   className="footer-link footer-social-link"
+                  aria-label="TikTok Custom Bike"
                 >
-                  <span className="footer-social-icon">TK</span>
+                  <span className="footer-social-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19.6 6.8c-1.6-.1-3-1-3.7-2.3-.3-.5-.5-1.1-.5-1.7V2.5h-3.3v12.8c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6 0 .8.1V9.4c-.3 0-.5-.1-.8-.1-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V9.5c1.3.9 2.9 1.5 4.6 1.5V7.7c-.1 0-.2 0-.4-.1z" />
+                    </svg>
+                  </span>
                   TikTok
                 </a>
               </li>
@@ -112,6 +124,19 @@ export function SiteFooter() {
           <p className="footer-copy">
             © {new Date().getFullYear()} Custom Bike · Montreuil, Seine-Saint-Denis
           </p>
+          <nav className="footer-legal-links">
+            <Link href="/mentions-legales" className="footer-legal-link">
+              Mentions légales
+            </Link>
+            <span className="footer-legal-sep">·</span>
+            <Link href="/cgv" className="footer-legal-link">
+              CGV
+            </Link>
+            <span className="footer-legal-sep">·</span>
+            <Link href="/confidentialite" className="footer-legal-link">
+              Confidentialité
+            </Link>
+          </nav>
           <p className="footer-tagline">
             Repair · Custom · LED · Insurance · Mobility
           </p>

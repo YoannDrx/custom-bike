@@ -1,0 +1,418 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// BETTER-AUTH CORE
+// ============================================================
+
+model User {
+  id               String    @id
+  name             String
+  email            String    @unique
+  emailVerified    Boolean   @default(false)
+  image            String?
+  role             String?   @default("user")
+  banned           Boolean?  @default(false)
+  banReason        String?
+  banExpires       DateTime?
+  stripeCustomerId String?   @unique
+  phone            String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  sessions  Session[]
+  accounts  Account[]
+  orders    Order[]
+  addresses Address[]
+  carts     Cart[]
+  messages  ContactMessage[]
+
+  @@map("user")
+}
+
+model Session {
+  id             String   @id
+  userId         String
+  token          String   @unique
+  expiresAt      DateTime
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verification")
+}
+
+// ============================================================
+// BOUTIQUE
+// ============================================================
+
+model Category {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  image       String?
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@map("category")
+}
+
+model Product {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  name            String
+  tagline         String?
+  description     String
+  priceCents      Int
+  compareAtCents  Int?
+  currency        String        @default("eur")
+  stock           Int           @default(0)
+  trackStock      Boolean       @default(true)
+  weightGrams     Int?
+  status          ProductStatus @default(DRAFT)
+  featured        Boolean       @default(false)
+  categoryId      String?
+  stripeProductId String?       @unique
+  stripePriceId   String?       @unique
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  category   Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  images     ProductImage[]
+  variants   ProductVariant[]
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+
+  @@index([status, featured])
+  @@index([categoryId])
+  @@map("product")
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  url       String
+  alt       String?
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_image")
+}
+
+model ProductVariant {
+  id            String   @id @default(cuid())
+  productId     String
+  name          String
+  sku           String?
+  priceCents    Int?
+  stock         Int      @default(0)
+  stripePriceId String?
+  createdAt     DateTime @default(now())
+
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+
+  @@index([productId])
+  @@map("product_variant")
+}
+
+// ============================================================
+// PANIER
+// ============================================================
+
+model Cart {
+  id        String   @id @default(cuid())
+  userId    String?
+  sessionId String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items CartItem[]
+
+  @@index([userId])
+  @@map("cart")
+}
+
+model CartItem {
+  id         String   @id @default(cuid())
+  cartId     String
+  productId  String
+  variantId  String?
+  quantity   Int      @default(1)
+  priceCents Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  cart    Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  @@unique([cartId, productId, variantId])
+  @@index([cartId])
+  @@map("cart_item")
+}
+
+// ============================================================
+// COMMANDES
+// ============================================================
+
+model Order {
+  id                    String         @id @default(cuid())
+  number                String         @unique
+  userId                String?
+  email                 String
+  phone                 String?
+  status                OrderStatus    @default(PENDING)
+  paymentStatus         PaymentStatus  @default(PENDING)
+  subtotalCents         Int
+  shippingCents         Int            @default(0)
+  taxCents              Int            @default(0)
+  totalCents            Int
+  currency              String         @default("eur")
+  shippingMethod        ShippingMethod @default(PICKUP)
+  stripeSessionId       String?        @unique
+  stripePaymentIntentId String?        @unique
+  trackingNumber        String?
+  trackingUrl           String?
+  notes                 String?
+  shippingAddressId     String?
+  billingAddressId      String?
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  paidAt                DateTime?
+  shippedAt             DateTime?
+  deliveredAt           DateTime?
+  cancelledAt           DateTime?
+
+  user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  shippingAddress Address? @relation("ShippingAddress", fields: [shippingAddressId], references: [id])
+  billingAddress  Address? @relation("BillingAddress", fields: [billingAddressId], references: [id])
+  items           OrderItem[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("order")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum ShippingMethod {
+  PICKUP
+  STANDARD
+  EXPRESS
+}
+
+model OrderItem {
+  id         String @id @default(cuid())
+  orderId    String
+  productId  String?
+  variantId  String?
+  name       String
+  image      String?
+  quantity   Int
+  priceCents Int
+  totalCents Int
+
+  order   Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+  @@map("order_item")
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  userId     String?
+  firstName  String
+  lastName   String
+  company    String?
+  line1      String
+  line2      String?
+  postalCode String
+  city       String
+  country    String   @default("FR")
+  phone      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user           User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shippingOrders Order[] @relation("ShippingAddress")
+  billingOrders  Order[] @relation("BillingAddress")
+
+  @@index([userId])
+  @@map("address")
+}
+
+// ============================================================
+// CONTENU ÉDITORIAL
+// ============================================================
+
+model Realization {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  bike        String?
+  category    String?
+  summary     String?
+  description String?
+  coverImage  String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  images RealizationImage[]
+
+  @@index([published, featured])
+  @@map("realization")
+}
+
+model RealizationImage {
+  id            String   @id @default(cuid())
+  realizationId String
+  url           String
+  alt           String?
+  position      Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  realization Realization @relation(fields: [realizationId], references: [id], onDelete: Cascade)
+
+  @@index([realizationId])
+  @@map("realization_image")
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  author    String
+  bike      String?
+  content   String
+  rating    Int      @default(5)
+  published Boolean  @default(true)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonial")
+}
+
+model FaqItem {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String?
+  position  Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faq_item")
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  userId    String?
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  status    MessageStatus @default(NEW)
+  source    String?
+  createdAt DateTime      @default(now())
+  readAt    DateTime?
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@map("contact_message")
+}
+
+enum MessageStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+
+  @@map("site_setting")
+}

@@ -1,7 +1,10 @@
 "use client";
 
-import { FormEvent, startTransition, useState } from "react";
+import { FormEvent, useState, useTransition } from "react";
 import { motion } from "motion/react";
+import { toast } from "sonner";
+
+import { submitContact } from "@/app/actions/contact";
 import { business } from "@/lib/site-content";
 
 const serviceOptions = [
@@ -49,29 +52,33 @@ const initialState: FormState = {
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<"idle" | "ready">("idle");
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [pending, startTransition] = useTransition();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const lines = [
-      `Nom : ${form.lastName}`,
-      `Prénom : ${form.firstName}`,
-      `Téléphone : ${form.phone}`,
-      `E-mail : ${form.email}`,
-      `Véhicule : ${form.vehicle || "Non précisé"}`,
-      `Prestation : ${form.service}`,
-      "",
-      form.message,
-    ];
+    startTransition(async () => {
+      const result = await submitContact({
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        vehicle: form.vehicle || undefined,
+        service: form.service,
+        message: form.message,
+        source: "contact-page",
+      });
 
-    const params = new URLSearchParams({
-      subject: `Demande Custom Bike — ${form.service}`,
-      body: lines.join("\n"),
+      if (!result.ok) {
+        toast.error(result.error ?? "Envoi impossible.");
+        return;
+      }
+
+      toast.success("Message envoyé. On te recontacte vite.");
+      setStatus("sent");
+      setForm(initialState);
     });
-
-    startTransition(() => setStatus("ready"));
-    window.location.href = `${business.emailHref}?${params.toString()}`;
   };
 
   return (
@@ -189,8 +196,12 @@ export function ContactForm() {
         </div>
 
         <div className="cf-actions">
-          <button type="submit" className="neo-button neo-button-primary cursor-pointer">
-            <span>Préparer l&apos;e-mail</span>
+          <button
+            type="submit"
+            disabled={pending}
+            className="neo-button neo-button-primary cursor-pointer disabled:opacity-60"
+          >
+            <span>{pending ? "Envoi…" : "Envoyer ma demande"}</span>
             <span className="neo-button-mark" />
           </button>
           <a href={business.emailHref} className="cf-email-link">
@@ -198,9 +209,9 @@ export function ContactForm() {
           </a>
         </div>
 
-        {status === "ready" && (
+        {status === "sent" && (
           <p className="cf-confirm">
-            Le brouillon est prêt dans votre application e-mail.
+            Message reçu. On te recontacte par email ou téléphone sous 24h.
           </p>
         )}
       </div>
